@@ -1,0 +1,119 @@
+<div class="table-responsive" data-pattern="priority-columns">
+	<table ng-if="tableModel"
+		class="table table-bordered table-striped table-hover datatable">
+		<thead style="background-color: #27586f; color:#FAFAFA;">
+			<tr class="header-mine">
+				<th ng-if="tableModel.hasCheckBox"></th>
+				<th class="colNo"></th>
+				<th ng-repeat="column in tableModel.columns"
+					ng-bind="column.displayName"></th>
+				<th ng-repeat="opt in tableModel.operations" class="colNo"><a
+					class="btnNoAction"><span class="icon"></span></a></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="cursor: pointer;" ng-if="tableModel.elements"
+				ng-repeat="element in tableModel.elements">
+				<th ng-if="tableModel.hasCheckBox">
+					<div ng-if="tableModel.checkBoxType.type"
+						class="checkbox checkbox-purple col-fix-5">
+						<input type="checkbox" ng-model="element.check"
+							class="fishbiniCheck"
+							ng-change="tableModel.checkBoxType.action(element,element.check)">
+						<label> </label> <input ng-show="element.check"
+							ng-model="element.description" class="fishbinTag">
+
+					</div>
+					<div ng-if="!tableModel.checkBoxType.type"
+						class="checkbox checkbox-purple col-fix-5">
+						<input type="checkbox" ng-model="element.check"
+							ng-change="tableModel.checkBoxType.action(element,element.check)"><label>
+						</label>
+					</div>
+				</th>
+				<th ng-class="tableModel.indexCss(element)">{{$index+(tableModel.paginationObject.page*
+					tableModel.paginationObject.size) + 1}}</th>
+				<th ng-repeat="column in tableModel.columns"
+					ng-bind="tableModel.valueRenderer(element,column.value)"></th>
+
+				<th ng-repeat="opt in tableModel.operations"><a
+					class="btn btn-primary" data-toggle="modal"
+					data-target="#{{opt.modalId}}"
+					ng-click="opt.action(element, tableModel.entityName)"><i
+						ng-class="opt.icon"></i></a></th>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<hr>
+<div class="row" ng-if="tableModel.count > 0">
+	<div class="form-group">
+		<div class="col-sm-4">
+			<label><span>صفحه بندی</span></label>
+			<div style="margin-right: 10px;">
+				<button style="min-width: auto !important;" type="button"
+					class="btn btn-flat btn-default "
+					ng-show="(tableModel.paginationObject.page+1) != 1"
+					ng-click="tableModel.previous()">
+					<div aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</div>
+				</button>
+				<button style="min-width: auto !important;" type="button"
+					class="btn btn-flat btn-default "
+					ng-click="tableModel.selectPage(0)"
+					ng-show="(tableModel.paginationObject.page+1) != 1">
+					<div>1</div>
+				</button>
+				<button style="min-width: auto !important;" type="button"
+					class="btn btn-flat btn-default "
+					ng-show="(tableModel.paginationObject.page+1) != 1">
+					<div>...</div>
+				</button>
+				<button style="min-width: auto !important;" type="button"
+					class="btn btn-flat btn-primary" class="current">
+					<div ng-bind="tableModel.paginationObject.page+1"></div>
+				</button>
+				<button style="min-width: auto !important;" type="button"
+					class="btn btn-flat btn-default "
+					ng-show="(tableModel.paginationObject.page+1) != tableModel.paginationObject.lastPage">
+					<div>...</div>
+				</button>
+				<button style="min-width: auto !important;" type="button"
+					class="btn btn-flat btn-default "
+					ng-click="tableModel.selectPage(tableModel.paginationObject.lastPage-1)"
+					ng-show="(tableModel.paginationObject.page+1) != tableModel.paginationObject.lastPage">
+					<div ng-bind="tableModel.paginationObject.lastPage"></div>
+				</button>
+				<button style="min-width: auto !important;" type="button"
+					class="btn btn-flat btn-default "
+					ng-show="(tableModel.paginationObject.page+1) != tableModel.paginationObject.lastPage"
+					ng-click="tableModel.next()">
+					<div aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</div>
+				</button>
+			</div>
+		</div>
+
+		<textbox size="2" labelsize="100" label="Labels.Generals.totalRecords"
+			model="tableModel.count" disable="true"></textbox>
+
+		<div class="col-sm-1"></div>
+
+		<buttontextbox label="Labels.Generals.selectPage"
+			model="tableModel.selectedPage"
+			operations="tableModel.selectPageOperations" size="2" labelsize="100"></buttontextbox>
+
+		<div class="col-sm-1"></div>
+
+		<combobox size="2" label="Labels.Generals.rowsInPage"
+			model="tableModel.paginationObject.size"
+			combomodel="tableModel.ranges" labelsize="100"></combobox>
+	</div>
+</div>
+
+
+<script type="text/ng-template" id="dataPopoverInput">
+    		<input class="" type="text" ng-model="element.description">
+	</script>

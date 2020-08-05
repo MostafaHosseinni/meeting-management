@@ -1,0 +1,29 @@
+<div ng-if="item" class="products">
+	<div class="product">
+		<div class="product-micro" ng-if="!slider.single">
+			<div class="row product-micro-row">
+				<div class="col col-xs-5">
+					<div class="product-image">
+						<div class="image">
+							<a href="detail.html"> <img ng-src="{{item.image}}" alt="">
+								<img ng-src="{{item.image_hover}}" alt="" class="hover-image">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col col-xs-7">
+					<!-- /.product-image -->
+					<div class="product-info">
+						<h3 class="name">
+							<a ng-click="item.click()" ng-bind="item.title"></a>
+						</h3>
+
+						<div class="description" ng-bind="item.description"></div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

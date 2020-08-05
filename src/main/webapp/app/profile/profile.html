@@ -1,0 +1,21 @@
+<div class="box box-form">
+	<div class="box-header">
+		<center><h3 class="box-title" ng-bind="titlePage"></h3></center>
+	</div>
+	<div class="box-body">
+		<div class="col-md-12">
+			<div class='row'>
+				<textbox label="Labels.Profile.firstName" model="data.firstName"
+					size="12"></textbox>
+
+				<textbox label="Labels.Profile.lastName" model="data.lastName"
+					size="12"></textbox>
+
+				<textbox label="Labels.Profile.email" model="data.email" size="12"></textbox>
+				<div class="form-group form-action text-center">
+					<mybutton label="Labels.Buttons.save" click="save()"> </mybutton>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

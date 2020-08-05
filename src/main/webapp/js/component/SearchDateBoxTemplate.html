@@ -1,0 +1,16 @@
+<div ng-class="size">
+	<div class="input-group">
+		<label class="input-group-addon col-fix-label label-mine"><span
+			ng-bind="label"></span></label>
+			<a class="input-group-addon btn-mine">از</a> 
+			<input type="text" class="form-control input-group-addon"
+			ng-model="ngModel.startDate" style="direction: ltr !important;"
+			ui-mask="9999/99/99" model-view-value="true" placeholder="____/__/__"
+			ng-pattern="/^(13\d\d|14\d\d)/(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])$/">
+			<a class="input-group-addon btn-mine">تا</a>
+			<input	type="text" class="form-control text-mine input-group-addon" ng-model="ngModel.endDate"
+			style="direction: ltr !important;" ui-mask="9999/99/99"
+			model-view-value="true" placeholder="____/__/__"
+			ng-pattern="/^(13\d\d|14\d\d)/(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])$/">
+	</div>
+</div>

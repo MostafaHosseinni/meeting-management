@@ -1,0 +1,19 @@
+<div ng-class="size">
+	<div class="form-group">
+		<label ng-class=""><i ng-if="required" class="fa fa-asterisk"
+			style="color: darkred !important; font-size: 12px !important;"></i> <span
+			ng-bind="label"></span></label> <input class="form-control"
+			ng-model="ngData.name" ng-required="required" ng-disabled="1==1">
+	</div>
+
+	<button type="button" class="btn btn-success" ng-click="chooseFile()"
+		ng-bind="Labels.Buttons.chooseFile"></button>
+	<button type="button" class="btn btn-danger" ng-click="deleteFile()"
+		ng-bind="Labels.Buttons.deleteFile"></button>
+
+	<input type="file" ng-attr-id="{{fileChooserName}}"
+		style="display: none;" ng-file-data="ngData" ng-file-model="ngModel">
+
+
+
+</div>

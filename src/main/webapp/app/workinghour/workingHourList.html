@@ -1,0 +1,52 @@
+<div class="box box-form">
+	<div class="box-header">
+		<div class="col-md-6">
+			<h3 style="margin-top: 2rem;" class="box-title" ng-bind="titlePage"></h3>
+		</div>
+
+		<div class="col-md-12">
+			<div class='row'>
+				<hr>
+				<datatable tablemodel="tableModel"></datatable>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div id="WorkingHourView" class="modal fade in" id="modal-default">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h3 class="modal-title" ng-bind="Labels.Generals.detailView"></h3>
+				<hr>
+			</div>
+			<div class="modal-body" style="border: 1px;">
+				<form role="form" name="modelForm">
+					<div class="row">
+						<div class="form-group">
+							<combobox size="6" label="Labels.WorkingHour.workDay"
+								model="modelData.workDay" combomodel="workDayModel" disable="true"></combobox>
+								<textbox size="6" label="Labels.WorkingHour.startTime" type="number" 
+								model="modelData.startTime" require="true" ></textbox>
+							<textbox size="6" label="Labels.WorkingHour.endTime"  type="number" 
+								model="modelData.endTime" require="true"  ></textbox>
+
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<hr>
+				<button type="button" class="btn btn-default pull-left"
+					data-dismiss="modal" ng-bind="Labels.Buttons.cancel"></button>
+				<mybutton label="Labels.Buttons.save" click="saveOrUpdate()"
+					icon="fa fa-save"></mybutton>
+			</div>
+		</div>
+	</div>
+</div>

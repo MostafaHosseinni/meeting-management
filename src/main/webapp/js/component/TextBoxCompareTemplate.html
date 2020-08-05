@@ -1,0 +1,10 @@
+<div ng-class="size">
+	<div class="input-group">
+		<label ng-class="labelSize"><span
+			ng-bind="label"></span></label>
+			<input type="text" class="form-control input-group-addon"
+			ng-model="sourceModel" ng-disabled="true" >
+			<a class="input-group-addon" ng-class="sourceModel == targetModel ? 'a-success' : 'a-failed'"></a>
+			<input	type="text" ng-class="sourceModel == targetModel ? 'text-success' : 'text-failed'" class="form-control text-mine input-group-addon" ng-model="targetModel" ng-disabled="true" >
+	</div>
+</div>

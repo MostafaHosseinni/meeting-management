@@ -1,0 +1,43 @@
+<div ng-class="size">
+	<div class="form-group">
+		<label class=""><i ng-if="isrequired" class="fa fa-asterisk"
+			style="color: darkred !important; font-size: 12px !important;"></i> <span
+			ng-bind="label"></span></label>
+		<div class="angucomplete-holder">
+			<div class="input-group" style = "width: 100%;">
+				<input ng-disabled="ngDisabled" ng-required="isrequired"
+					class="form-control" id="{{id}}_value" ng-model="searchStr" 
+					type="text" placeholder="{{placeholder}}" 
+					onmouseup="this.select();" ng-focus="resetHideResults()"
+					ng-blur="hideResults()" autocomplete="off" /> <span ng-if="operation" class="input-group-btn"> <mybutton
+						click="operation.action()" label="operation.title"
+						icon="{{operation.icon}}"></mybutton>
+				</span>
+			</div>
+			<div id="{{id}}_dropdown" class="angucomplete-dropdown"
+				ng-if="showDropdown">
+				<div class="angucomplete-searching" ng-show="searching">درحال
+					جستجو</div>
+				<div class="angucomplete-searching"
+					ng-show="!searching && (!results || results.length == 0)">موردی
+					یافت نشد</div>
+				<div class="angucomplete-row" ng-repeat="result in results"
+					ng-mousedown="selectResult(result)" ng-mouseover="hoverRow()"
+					ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+					<div ng-if="imageField" class="angucomplete-image-holder">
+						<img ng-if="result.image && result.image != ''"
+							ng-src="{{result.image}}" class="angucomplete-image" />
+						<div ng-if="!result.image && result.image != ''"
+							class="angucomplete-image-default"></div>
+					</div>
+					<div class="angucomplete-title" ng-if="matchClass"
+						ng-bind-html="result.title"></div>
+					<div class="angucomplete-title" ng-if="!matchClass">{{
+						result.title }}</div>
+					<div ng-if="result.description && result.description != ''"
+						class="angucomplete-description">{{result.description}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

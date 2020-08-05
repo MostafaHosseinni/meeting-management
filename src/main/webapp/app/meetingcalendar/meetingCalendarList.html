@@ -1,0 +1,124 @@
+<div class="box box-form">
+	<div class="box-header">
+		<div class="col-md-6">
+			<h3 style="margin-top: 2rem;" class="box-title" ng-bind="titlePage"></h3>
+		</div>
+		<div class="col-md-6">
+			<mybutton ng-if="CurrentUser.canDo('meeting:create')" label="Labels.Buttons.New" click="addItem()" toggle="modal"
+				target="#MeetingView" icon="fa fa-plus" class="btn btn-primary pull-right"></mybutton>
+		</div>
+		<div class="col-md-12">
+			<div class='row'>
+				<hr>
+				<clienttable tablemodel="tableModel" elements="schedule"></clienttable>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div id="MeetingView" class="modal fade in" id="modal-default">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h3 class="modal-title" ng-bind="Labels.Generals.detailView"></h3>
+				<hr>
+			</div>
+			<div class="modal-body" style="border: 1px;">
+				<form role="form" name="modelForm">
+					<div class="row">
+						<div class="form-group">
+
+							<textbox size="6" label="Labels.Meeting.title" model="modelData.title" require="false"
+								disable="modelData.id != null">
+							</textbox>
+
+							<datebox size="6" label="Labels.Meeting.meetingDate" model="modelData.meetingDate"
+								require="false" disable="modelData.id != null"></datebox>
+
+							<textbox size="6" label="Labels.Meeting.startTime" type="number" model="modelData.startTime"
+								require="false" disable="modelData.id != null"></textbox>
+
+							<textbox size="6" label="Labels.Meeting.endTime" type="number" model="modelData.endTime"
+								require="false" disable="modelData.id != null"></textbox>
+
+
+							<combobox size="6" label="Labels.Meeting.meetingType" model="modelData.meetingType"
+								combomodel="meetingTypeModel" disable="modelData.id != null"></combobox>
+
+							<combobox size="6" label="Labels.Meeting.meetingPosition" model="modelData.meetingPosition"
+								combomodel="meetingPositionModel" disable="modelData.id != null"></combobox>
+
+							<textbox size="6" label="Labels.Meeting.meetingService" model="modelData.meetingService"
+								require="false" disable="modelData.id != null"></textbox>
+
+							<angucomplete size="6" label="Labels.Meeting.meetingRoom"
+								selectedobject="modelData.meetingRoom" autocomobject="meetingRoomModel"
+								disable="modelData.id != null"></angucomplete>
+
+								<angucomplete size="6" label="Labels.Meeting.Secretary" selectedobject="modelData.secretary"
+									autocomobject="secretaryModel" disable="modelData.id != null" ng-if="modelData.meetingType != 'قرار'"></angucomplete>
+	
+								<angucomplete size="6" label="Labels.Meeting.boss" selectedobject="modelData.boss"
+									autocomobject="bossModel" disable="modelData.id != null" ng-if="modelData.meetingType != 'قرار'"></angucomplete>
+									
+								<!-- <textareabox size="12" label="Labels.Meeting.agenda" model="modelData.agenda"
+								disable="modelData.id != null">
+							</textareabox> -->
+
+							<div class="row">
+								<div class="col-md-12" ng-if="modelData.id == null">
+									<buttontextbox size="12" label="Labels.Meeting.newAgenda"
+										model="newAgenda" operations="operations" ></buttontextbox>
+								</div>
+							</div>
+
+							<div class="col-md-12" ng-if="modelData.agenda.length>0">
+								<label ng-class=""><span ng-bind="Labels.Meeting.agenda"></span></label>
+								<div class="box box-form">
+									<ul class="nav nav-stacked">
+										<li ng-repeat="a in modelData.agenda" ><a>{{a}} <mybutton ng-if="modelData.id == null"  
+														class="pull-right bg-red" click="removeItem(a)"
+													icon="fa fa-minus"></mybutton>
+										</a></li>
+									</ul>
+								</div>
+							</div>
+
+
+							<textareabox size="12" label="Labels.MeetingRoom.address"
+								model="modelData.meetingRoom.address" disable="modelData.id != null"
+								ng-if="modelData.id != null">
+							</textareabox>
+
+
+							<multiselect size="6" label="Labels.Meeting.invitees" model="modelData.invitees"
+								multimodel="inviteesModel" disable="modelData.id != null"></multiselect>
+
+
+
+
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<hr>
+				<button type="button" ng-if="modelData.id==null" class="btn btn-default pull-left" data-dismiss="modal"
+					ng-bind="Labels.Buttons.cancel"></button>
+				<mybutton label="Labels.Buttons.save" ng-if="modelData.id==null" click="preCheck()" icon="fa fa-save">
+				</mybutton>
+				<a ng-if="CurrentUser.canDo('approvals:create') && modelData.id!=null && modelData.meetingType != 'قرار'" href="#!/approvalsList/{{modelData.id}}"
+					ng-click="afterLoad()" class="btn btn-primary pull-left"
+					ng-bind="Labels.Buttons.approvalConfirm "></a>
+				<mybutton ng-if="CurrentUser.canDo('meeting:update') && modelData.id!=null" label="Labels.Buttons.rejected" click="reject()"
+					icon=""></mybutton>
+
+
+			</div>
+		</div>
+	</div>
+</div>

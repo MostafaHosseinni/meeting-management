@@ -1,0 +1,53 @@
+<div ng-class="size">
+
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<div class="panel-title">
+				<label ng-class=""><i ng-if="require" class="fa fa-asterisk"
+					style="color: darkred !important; font-size: 12px !important;"></i>
+					<span ng-bind="label"></span></label>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="row" style="padding: 2px;">
+				<div class="col-md-2">
+					<label><span class="" ng-bind="Labels.FooterLink.text"></span></label>
+				</div>
+				<div class="col-md-10">
+					<input class="form-control" type="text" ng-model="addData.title" />
+				</div>
+			</div>
+			<div class="row" style="padding: 2px;">
+				<div class="col-md-2">
+					<label><span class="" ng-bind="Labels.FooterLink.link"></span></label>
+				</div>
+				<div class="col-md-10">
+					<input class="form-control" type="text" ng-model="addData.link" />
+				</div>
+			</div>
+			<div class="row" style="padding: 2px;">
+				<div class="col-md-7"></div>
+				<div class="col-md-5">
+					<button class="btn btn-block bg-green btn-sm"
+						ng-click="addOperation()">
+						<i class="fa fa-plus"></i>
+					</button>
+				</div>
+			</div>
+
+			<div class="col-md-12" ng-if="model.length>0">
+				<label ng-class=""><span
+					ng-bind="Labels.Generals.selectedItems"></span></label>
+				<div class="box box-form">
+					<ul class="nav nav-stacked">
+						<li ng-repeat="a in model"><a>{{a.title}} - {{a.link}}<mybutton
+									class="pull-right bg-red" click="removeItem(a)"
+									icon="fa fa-minus"></mybutton>
+						</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

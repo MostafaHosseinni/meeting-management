@@ -1,0 +1,14 @@
+
+<div ng-class="size">
+	<div class="form-group">
+		<div class="radio radio-inline radio-purple"
+			ng-repeat="element in radioModel">
+			<i
+			ng-if="required" class="fa fa-asterisk"
+			style="color: darkred !important; font-size: 12px !important;"></i>
+			<input type="radio" name="{{radioName}}" ng-value="element.value"
+				ng-model="$parent.ngModel" ng-required="required" ng-disabled="ngDisabled"> <label
+				ng-bind="element.name"> </label>
+		</div>
+	</div>
+</div>

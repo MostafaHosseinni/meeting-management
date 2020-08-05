@@ -1,0 +1,37 @@
+<section class="section new-arriavls latest-blog outer-bottom-vs" ng-if = "slider.type != 'big'">
+	<h3 class="section-title" ng-bind="slider.title"></h3>
+	<div class="tab-content outer-top-xs">
+		<div class="tab-pane in active" id="all">
+			<div class="product-slider">
+				<data-owl-carousel
+					class="owl-carousel home-owl-carousel custom-carousel owl-theme blog-slider"
+					data-options="slider.options">
+				<div owl-carousel-item="" ng-repeat="item in slider.items"
+					class="item item-carousel">
+					<singlesliderproduct item="item" ng-if="slider.type == 'single'"></singlesliderproduct>
+					<multiplesliderproduct item="item"
+						ng-if="slider.type == 'multiple'"></multiplesliderproduct>
+					<blogsliderproduct item="item" ng-if="slider.type == 'blog'"></blogsliderproduct>
+				</div>
+				</data-owl-carousel>
+			</div>
+		</div>
+	</div>
+</section>
+
+<data-owl-carousel id="owl-main" 
+		class="owl-carousel owl-inner-nav owl-ui-sm"
+		data-options="slider.options" ng-if = "slider.type == 'big'">
+	<div owl-carousel-item="" ng-repeat="item in slider.items" class="item"
+		ng-style="{'background-image': 'url({{item.image}})'}">
+		<div class="container-fluid">
+			<div class="caption bg-color vertical-center text-right">
+				<div class="big-text fadeInDown-1" ng-bind="item.title"></div>
+				<div class="excerpt fadeInDown-2 hidden-xs">
+					<span ng-bind="item.description"></span>
+				</div>
+			</div>
+			<!-- /.caption -->
+		</div>
+	</div>
+	</data-owl-carousel>

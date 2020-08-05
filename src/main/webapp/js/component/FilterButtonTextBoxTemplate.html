@@ -1,0 +1,11 @@
+<div class="input-group">
+	<div class="editable-input"
+		style="position: relative; width: 100% !important;">
+		<input ng-model="ngModel" type="text" class="form-control input-sm"
+			style="padding-right: 24px;"><span ng-click="clearModel()"
+			class="editable-clear-x" style="display: block;"></span>
+	</div>
+	<a class="input-group-addon a-mine btn-mine"
+		style="padding: 0% !important; width: auto !important;"
+		ng-click="buttonClicked()"><i ng-class="selectedOperation.icon">{{selectedOperation.title}}</i></a>
+</div>

@@ -1,0 +1,19 @@
+<div ng-class="size">
+	<div class="form-group" ng-show ="!ngDisabled">
+		<angucomplete size="12" label="label" selectedobject="addData" 
+			operation="addOperation" autocomobject="multimodel"></angucomplete>
+	</div>
+
+	<div class="col-md-12" ng-if="model.length>0">
+		<label ng-class=""><span
+			ng-bind="selectedLabel"></span></label>
+		<div class="box box-form">
+			<ul class="nav nav-stacked">
+				<li ng-repeat="a in model"><a>{{valueRender(a)}} <mybutton ng-if ="!ngDisabled"
+							class="pull-right bg-red" click="removeItem(a)"
+							icon="fa fa-minus"></mybutton>
+				</a></li>
+			</ul>
+		</div>
+	</div>
+</div>

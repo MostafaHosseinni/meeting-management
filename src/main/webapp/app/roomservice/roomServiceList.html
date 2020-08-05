@@ -1,0 +1,49 @@
+<div class="box box-form">
+	<div class="box-header">
+		<div class="col-md-6">
+			<h3 style = "margin-top: 2rem;" class="box-title" ng-bind="titlePage"></h3>
+		</div>
+		<div class="col-md-6">
+			<mybutton label="Labels.Buttons.New" click="addItem()" toggle="modal"
+				target="#RoomServiceView" icon="fa fa-plus"
+				class="btn btn-primary pull-right"></mybutton>
+		</div>
+		<div class="col-md-12">
+			<div class='row'>
+				<hr>
+				<datatable tablemodel="tableModel"></datatable>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div id="RoomServiceView" class="modal fade in" id="modal-default">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				<h3 class="modal-title" ng-bind="Labels.Generals.detailView"></h3>
+				<hr>
+			</div>
+			<div class="modal-body" style="border: 1px;">
+				<form role="form" name="modelForm">
+					<div class="row">
+						<div class="form-group">
+						<angucomplete label="Labels.RoomService.meetingRoom" selectedobject="modelData.meetingRoom" autocomobject="meetingRoomModel"></angucomplete><angucomplete label="Labels.RoomService.serviceType" selectedobject="modelData.serviceType" autocomobject="serviceTypeModel"></angucomplete>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<hr>
+				<button type="button" class="btn btn-default pull-left"
+					data-dismiss="modal" ng-bind="Labels.Buttons.cancel"></button>
+				<mybutton label="Labels.Buttons.save" click="saveOrUpdate()" icon="fa fa-save"></mybutton>
+			</div>
+		</div>
+	</div>
+</div>

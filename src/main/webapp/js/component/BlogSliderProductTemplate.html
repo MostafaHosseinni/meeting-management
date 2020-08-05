@@ -1,0 +1,17 @@
+<div ng-if="item" class="blog-post">
+	<div class="blog-post-image">
+		<div class="image">
+			<a href="blog.html"><img ng-src="{{item.image}}" alt=""></a>
+		</div>
+	</div>
+	<!-- /.blog-post-image -->
+
+	<div class="blog-post-info text-right">
+		<h3 class="name">
+			<a href="#" ng-bind="item.title"></a>
+		</h3>
+		<p class="text" ng-bind="item.description"></p>
+	</div>
+	<!-- /.blog-post-info -->
+
+</div>

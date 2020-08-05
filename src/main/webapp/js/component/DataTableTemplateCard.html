@@ -1,0 +1,106 @@
+<div class="row" ng-if="tableModel.hasFilter">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label ng-binding">جستجو</label>
+            <input type="text" id="" ng-enter="tableModel.callService()" class="form-control ng-valid ng-dirty ng-valid-parse ng-empty ng-touched" placeholder="جستجو" ng-model="tableModel.searchData.name" style="">
+            <br/>
+            <button class="btn btn-info" ng-click="tableModel.callService()">جستجو</button>
+        </div>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+
+<div class="row" ng-if="tableModel">
+    <div class="col-md-4" ng-if="tableModel.elements"
+         ng-repeat="element in tableModel.elements">
+        <div class="card m-b-20">
+            <img class="card-img-top img-responsive"
+                 ng-src="{{'data:image/png;base64,' + tableModel.valueRenderer(element , 'imageBase64')}}"
+                 alt="Card image cap">
+            <div class="card-block">
+                <h4 class="card-title">{{tableModel.valueRenderer(element , tableModel.columns[0].value)}}</h4>
+                <p class="card-text"><span>{{tableModel.valueRenderer(element , tableModel.columns[1].value)}}</span> ریال</p>
+                <a class="btn btn-info" ng-click="tableModel.selectedObject(element)">درخواست محصول</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="col-12" ng-if="tableModel.count > 0">
+    <div class="row">
+        <div class="col-md-8 dataTables_paginate paging_simple_numbers">
+            <button type="button"
+                    class="btn btn-rounded paginate_button "
+                    ng-show="(tableModel.paginationObject.page+1) != 1"
+                    ng-click="tableModel.previous()">
+                <div aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </div>
+            </button>
+            <button type="button"
+                    class="btn  btn-rounded paginate_button " aria-controls="myTable"
+                    ng-click="tableModel.selectPage(0)"
+                    ng-show="(tableModel.paginationObject.page+1) != 1">
+                <div>1</div>
+            </button>
+            <button type="button"
+                    class="btn  btn-rounded paginate_button " aria-controls="myTable"
+                    ng-show="(tableModel.paginationObject.page+1) != 1">
+                <div>...</div>
+            </button>
+            <button type="button"
+                    class="btn btn-info btn-rounded paginate_button current" aria-controls="myTable"
+                    class="current">
+                <div ng-bind="tableModel.paginationObject.page+1"></div>
+            </button>
+            <button type="button"
+                    class="btn  btn-rounded  paginate_button" aria-controls="myTable"
+                    ng-show="(tableModel.paginationObject.page+1) != tableModel.paginationObject.lastPage">
+                <div>...</div>
+            </button>
+            <button type="button"
+                    class="btn  btn-rounded  paginate_button" aria-controls="myTable"
+                    ng-click="tableModel.selectPage(tableModel.paginationObject.lastPage-1)"
+                    ng-show="(tableModel.paginationObject.page+1) != tableModel.paginationObject.lastPage">
+                <div ng-bind="tableModel.paginationObject.lastPage"></div>
+            </button>
+            <button type="button"
+                    class="btn btn-rounded  paginate_button"
+                    ng-show="(tableModel.paginationObject.page+1) != tableModel.paginationObject.lastPage"
+                    ng-click="tableModel.next()">
+                <div aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </div>
+            </button>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-1">
+            <label class="col-md-12">تعداد کل</label>
+            <div class="col-md-12">
+                <a ng-bind="tableModel.count"></a>
+            </div>
+        </div>
+
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-2">
+            <buttontextbox label="Labels.Generals.selectPage"
+                           model="tableModel.selectedPage"
+                           operations="tableModel.selectPageOperations" size="12" labelsize="100"></buttontextbox>
+        </div>
+        <div class="col-md-9"></div>
+        <div class="col-md-1">
+
+            <combobox size="12" label="Labels.Generals.rowsInPage"
+                      model="tableModel.paginationObject.size"
+                      combomodel="tableModel.ranges" labelsize="100"></combobox>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="dataPopoverInput">
+    <input class="" type="text" ng-model="element.description">
+</script>

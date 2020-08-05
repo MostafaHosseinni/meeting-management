@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl" ng-app="myApp">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>سامانه مدیریت جلسات</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="shortcut icon" href="resources/img/meeting-icon.jpg" />
+<link href="vendor/toastr/toastr.min.css" rel="stylesheet"
+	type="text/css" />
+<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="vendor/datatables/dataTables.bootstrap.css">
+<link rel="stylesheet"
+	href="vendor/responsive-tables/responsivetables.css">
+<link href="resources/css/autocomplete.css" rel="stylesheet"
+	type="text/css" />
+<link href="resources/css/fontiran.css" rel="stylesheet" type="text/css" />
+<!--     <link href="assets/css/components.css" rel="stylesheet" type="text/css" /> -->
+
+<link rel="stylesheet" href="vendor/morris/morris.css">
+<!-- Icons -->
+<link href="resources/icons/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link href="resources/icons/themify-icons/themify-icons.css"
+	rel="stylesheet">
+<!--animate css-->
+<link rel="stylesheet" href="vendor/animate.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="resources/css/main-style.min.css">
+<link rel="stylesheet" href="resources/css/skins/all-skins.min.css">
+
+<link rel="stylesheet" href="resources/css/demo.css">
+<link rel="stylesheet" href="resources/css/tooltip.css">
+<link rel="stylesheet" href="resources/css/mostafa.css">
+
+
+<link rel="stylesheet" href="resources/carousel/ui-carousel.css">
+<link rel="stylesheet" href="js/lib/introjs.min.css">
+<link rel="stylesheet" href="js/lib/introjs-rtl.min.css">
+
+<!-- libs -->
+<script src="assets/js/modernizr.min.js"></script>
+
+<!-- libs -->
+<script src="js/lib/angular/angular.min.js"></script>
+<script src="js/lib/intro.min.js"></script>
+<script src="js/lib/deprecated.angular-intro.js"></script>
+<script src="js/lib/angular/angular-ui-router.min.js"></script>
+<script src="js/lib/angular/angular-animate.min.js"></script>
+<script src="js/lib/angular/ui-bootstrap.js"></script>
+<script src="js/lib/angular/mask.min.js"></script>
+<script src="js/lib/Chart.min.js"></script>
+<script src="js/lib/angular-chart.min.js"></script>
+<script src="js/lib/angular/angular-sanitize.min.js"></script>
+<script src="js/lib/md5.min.js"></script>
+<script src="assets/js/ADM-dateTimePicker.js"></script>
+<script
+	src="assets/plugins/file-upload/angular-bootstrap-file-field.min.js"></script>
+
+
+
+<script src="app/app.js"></script>
+<script src="app/indexController.js"></script>
+
+
+
+<!-- components -->
+<script src="js/component/RadioButton.js"></script>
+<script src="js/component/FilterTextBox.js"></script>
+<script src="js/component/TextBox.js"></script>
+<script src="js/component/TextareaBox.js"></script>
+<script src="js/component/DataTable.js"></script>
+<script src="js/component/ClientTable.js"></script>
+<script src="js/component/ComboBox.js"></script>
+<script src="js/component/Checkbox.js"></script>
+<script src="js/component/DateBox.js"></script>
+<script src="js/component/SearchDateBox.js"></script>
+<script src="js/component/TextBoxCompare.js"></script>
+<script src="js/component/ButtonTextBox.js"></script>
+<script src="js/component/FilterButtonTextBox.js"></script>
+<script src="js/component/FilterButton.js"></script>
+<script src="js/component/Autocomplete.js"></script>
+<script src="js/component/FileChooser.js"></script>
+<script src="js/component/Button.js"></script>
+<script src="js/component/MultiSelect.js"></script>
+<script src="js/component/FileUpload.js"></script>
+<script src="js/component/ImageUpload.js"></script>
+<script src="js/component/FooterLink.js"></script>
+<script src="js/component/Exchange.js"></script>
+
+
+
+<!-- utils -->
+<script src="js/util/Toast.js"></script>
+<script src="js/util/CallService.js"></script>
+<script src="js/util/CrudUtil.js"></script>
+<script src="js/util/FileUploadUtil.js"></script>
+<script src="js/util/BaseTableUtil.js"></script>
+<script src="js/util/CurrentUser.js"></script>
+<script src="js/util/UiUtil.js"></script>
+<script src="js/util/Labels.js"></script>
+
+<!-- Controllers -->
+
+<script src="app/home/homeController.js"></script>
+<script src="app/profile/profileController.js"></script>
+<script src="app/profile/profileListController.js"></script>
+<script src="app/approvals/approvalsListController.js"></script>
+<script src="app/holiday/holidayListController.js"></script>
+<script src="app/meeting/meetingListController.js"></script>
+<script src="app/meetingroom/meetingRoomListController.js"></script>
+<script src="app/servicetype/serviceTypeListController.js"></script>
+<script src="app/sms/smsListController.js"></script>
+<script src="app/smsconfig/smsConfigListController.js"></script>
+<script src="app/workinghour/workingHourListController.js"></script>
+<script src="app/changepassword/changePasswordController.js"></script>
+<script src="app/meetingcalendar/meetingCalendarListController.js"></script>
+
+
+
+
+
+
+</head>
+
+<body class="skin-cyan sidebar-mini" ng-controller="indexController">
+	<div class="page-loader-wrapper">
+		<div class="spinner"></div>
+	</div>
+	<div class="wrapper">
+		<!-- Main Header -->
+		<header class="top-menu-header">
+			<!-- Logo -->
+			<a href="index.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+<!-- 				<span class="logo-mini"><img -->
+<!-- 					src="" class="img-circle" -->
+<!-- 					alt="Logo Mini" /></span> logo for regular state and mobile devices -->
+				<span class="logo-lg"><b ng-bind="Labels.app"></b></span>
+			</a>
+			<!-- Header Navbar -->
+			<nav class="navbar navbar-static-top">
+				<!-- Sidebar toggle button-->
+				<a class="sidebar-toggle fa-icon" data-toggle="offcanvas"
+					role="button"> <span class="sr-only">منو کشویی</span>
+				</a>
+				<!-- Navbar Right Menu -->
+				
+			</nav>
+		</header>
+
+		<aside class="sidebar-left">
+			<section class="sidebar">
+				<!-- Sidebar user panel -->
+				<div class="user-panel">
+					<div class="image">
+						<img src="resources/img/meetingRoom.jpg" class="" alt="User Image"
+							style="display: block; margin-left: auto; margin-right: auto; width: 100%;">
+					</div>
+
+				</div>
+				<!-- Sidebar Menu -->
+				<ul class="sidebar-menu">
+					<li class="header"></li>
+					<!-- <li class="treeview"><a href="index.html"><i
+							class="fa fa-home"></i> <span ng-bind="Labels.Menu.home"></span></a></li> -->
+
+					<li ng-if="user.profileType == 'مدیر سیستم'" class="treeview"><a><i
+							class="fa  fa fa-list-alt	"></i> <span ng-bind="Labels.Menu.baseTables"></span>
+							<span class="pull-right-container"> <i
+								class="fa fa-angle-right pull-right"></i>
+						</span> </a>
+						<ul class="treeview-menu">
+							<li class="treeview"><a href="#!/meetingRoomList"> <i
+									class="fa fa-home"> </i> <span
+									ng-bind="Labels.Menu.meetingroom"> </span>
+							</a></li>
+							<li class="treeview"><a href="#!/serviceTypeList"> <i
+									class="fa fa-gear fa-spin"> </i> <span
+									ng-bind="Labels.Menu.servicetype"> </span>
+							</a></li>
+							<li class="treeview"><a href="#!/workingHourList"> <i
+									class="fa  fa-clock-o"> </i> <span
+									ng-bind="Labels.Menu.workinghour"> </span>
+							</a></li>
+							<li class="treeview"><a href="#!/holidayList"> <i
+									class="fa fa fa-calendar-check-o "> </i> <span ng-bind="Labels.Menu.holidaie">
+								</span>
+							</a></li>
+						</ul></li>
+
+
+					<li ng-if="user.profileType == 'مدیر سیستم'" class="treeview"><a><i
+							class="fa  fa-comment-o"></i> <span ng-bind="Labels.Menu.sms"></span>
+							<span class="pull-right-container"> <i
+								class="fa fa-angle-right pull-right"></i>
+						</span> </a>
+						<ul class="treeview-menu">
+							<li class="treeview"><a href="#!/smsList"> <i
+									class="fa  fa-comment-o"> </i> <span ng-bind="Labels.Menu.sms">
+								</span>
+							</a></li>
+							<li class="treeview"><a href="#!/smsConfigList"> <i
+									class="fa  fa-cogs fa-spin"> </i> <span ng-bind="Labels.Menu.smsconfig">
+								</span>
+							</a></li>
+						</ul></li>
+
+
+
+<!-- 					<li class="treeview"><a href="#!/approvalsList"> <i -->
+<!-- 							class="fa fa-user"> </i> <span ng-bind="Labels.Menu.approvals"> -->
+<!-- 						</span> -->
+<!-- 					</a></li> -->
+
+
+<!-- 					<li class="treeview"><a href="#!/meetingList"> <i -->
+<!-- 							class="fa fa-group"> </i> <span ng-bind="Labels.Menu.meeting"> -->
+<!-- 						</span> -->
+<!-- 					</a></li> -->
+
+					<li class="treeview"><a href="#!/meetingCalendarList"> <i
+							class="fa fa-calendar"> </i> <span
+							ng-bind="Labels.Menu.meetingCalendar"> </span>
+					</a></li>
+
+
+
+					<li class="treeview"><a><i class="fa fa-id-card"></i> <span
+							ng-bind="Labels.Menu.account"></span> <span
+							class="pull-right-container"> <i
+								class="fa fa-angle-right pull-right"></i>
+						</span> </a>
+						<ul class="treeview-menu">
+							<li ng-if="user.profileType == 'مدیر سیستم'" class="treeview"><a href="#!/profileList"><i
+									class="fa fa-user"></i> <span ng-bind="Labels.Menu.profile"></span></a></li>
+							<li class="treeview"><a href="#!/changePassword"><i
+									class="fa fa-lock"></i> <span
+									ng-bind="Labels.Menu.changePassword"></span></a></li>
+						</ul></li>
+
+
+
+					<li class="treeview"><a href="./form/logout.html"><i
+							class="fa fa-power-off"></i> <span ng-bind="Labels.Menu.logout"></span></a></li>
+
+
+				</ul>
+				<!-- /. sidebar-menu -->
+			</section>
+		</aside>
+		<!-- Content Wrapper -->
+		<div class="content-wrapper">
+			<section class="content">
+				<ui-view></ui-view>
+			</section>
+		</div>
+		<!-- /. content-wrapper -->
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<!-- Default to the left -->
+			<strong>کپی رایت &copy; 2020 <a href="http://spborna.org">مجموعه
+					ایرانیان پرداز جم</a> .
+			</strong> کلیه حقوق محفوظ است
+			<!-- To the right -->
+			<div class="pull-right hidden-xs"></div>
+		</footer>
+	</div>
+
+	<!-- /. wrapper content-->
+	<!-- JS scripts -->
+	<script src="vendor/jQuery/jquery-2.2.3.min.js"></script>
+	<script src="vendor/jquery-fullscreen/jquery.fullscreen-min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
+	<script src="vendor/datatables/dataTables.bootstrap.min.js"></script>
+	<script src="vendor/responsive-tables/responsivetables.js"></script>
+	<script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
+	<script src="vendor/fastclick/fastclick.min.js"></script>
+	<script src="vendor/raphael/raphael.min.js"></script>
+	<!--         <script src="vendor/morris/morris.min.js"></script> -->
+	<script src="vendor/chartjs/Chart.min.js"></script>
+	<script src="vendor/sparkline/jquery.sparkline.min.js"></script>
+	<script src="resources/js/app.min.js"></script>
+	<script src="vendor/toastr/toastr.min.js"></script>
+	<script src="resources/js/demo.js"></script>
+	<script src="resources/carousel/ui-carousel.js""></script>
+	<!--         <script src="resources/js/pages/dashboard.js"></script> -->
+	<!-- Slimscroll is required when using the fixed layout. -->
+</body>
+
+</html>

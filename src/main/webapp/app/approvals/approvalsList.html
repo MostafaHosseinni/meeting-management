@@ -1,0 +1,110 @@
+<div class="box box-form">
+	<div class="box-header">
+		<div class="col-md-12">
+			<h3 style="margin-top: 2rem;" class="box-title" ng-bind="Labels.Menu.detailMeeting"></h3>
+		</div>
+		<div class="col-md-2"></div>
+
+		<div class="col-md-12">
+			<div class='row'>
+				<hr>
+
+				<textbox size="3" label="Labels.Meeting.title" model="modelData.meeting.title" disable="true"></textbox>
+
+				<datebox size="3" label="Labels.Meeting.meetingDate" model="modelData.meeting.meetingDate"
+					disable="true"></datebox>
+
+				<textbox size="3" label="Labels.Meeting.startTime" type="number" model="modelData.meeting.startTime"
+					disable="true"></textbox>
+
+				<textbox size="3" label="Labels.Meeting.endTime" type="number" model="modelData.meeting.endTime"
+					disable="true"></textbox>
+
+				<combobox size="3" label="Labels.Meeting.meetingType" model="modelData.meeting.meetingType"
+					combomodel="meetingTypeModel" disable="true"></combobox>
+
+				<combobox size="3" label="Labels.Meeting.meetingPosition" model="modelData.meeting.meetingPosition"
+					combomodel="meetingPositionModel" disable="true"></combobox>
+
+				<textbox size="3" label="Labels.Meeting.meetingService" model="modelData.meeting.meetingService"
+					disable="true"></textbox>
+
+				<angucomplete size="3" label="Labels.Meeting.meetingRoom" selectedobject="modelData.meeting.meetingRoom"
+					autocomobject="meetingRoomModel" disable="true"></angucomplete>
+
+				<angucomplete size="6" label="Labels.Meeting.Secretary" selectedobject="modelData.meeting.Secretary"
+					autocomobject="SecretaryModel" disable="true"></angucomplete>
+
+				<angucomplete size="6" label="Labels.Meeting.boss" selectedobject="modelData.meeting.boss"
+					autocomobject="bossModel" disable="true">
+				</angucomplete>
+
+				<div class="col-md-12" ng-if="modelData.meeting.agenda.length>0">
+					<label ng-class=""><span ng-bind="Labels.Meeting.agenda"></span></label>
+					<div class="box box-form">
+						<ul class="nav nav-stacked">
+							<li ng-repeat="a in modelData.meeting.agenda"><a>{{a}} </li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="box box-form">
+	<div class="box-header">
+		<div class="col-md-12">
+			<h3 style="margin-top: 2rem;" class="box-title" ng-bind="titlePage"></h3>
+		</div>
+		<div class="col-md-2"></div>
+		<div class="col-md-12">
+			<div class='row'>
+				<hr>
+				<exchange ng-if="presentModel" suggestModel="presentModel" model="modelData.absents"></exchange>
+
+				<hr>
+			</div>
+			<div class="col-md-12">
+				<div class='row'>
+					<hr>
+
+					<combobox ng-if="agendaModel" size="3" label="Labels.Meeting.agenda"
+						model="temp.ruls" combomodel="agendaModel"></combobox>
+
+					<textbox size="6" label="Labels.Approvals.approval" model="temp.approvals"></textbox>
+
+					<mybutton click="addApproval()" icon="fa fa-plus"></mybutton>
+
+					<div class="col-md-12">
+					<div class="row">
+
+					<clienttable ng-if="modelData.agenda" tablemodel="tableModel" elements="modelData.agenda"></clienttable>
+
+					</div>
+					</div>
+					<textareabox size="12" label="Labels.Approvals.outOfApproval" model="modelData.outOfApproval">
+					</textareabox>
+
+					<textbox size="4" label="Labels.Approvals.startTime" type="number" model="modelData.startTime">
+					</textbox>
+
+					<textbox size="4" label="Labels.Approvals.endTime" type="number" model="modelData.endTime">
+					</textbox>
+
+					<imageupload size="4" label="Labels.Approvals.approvalFile" model="modelData.approvalFile">
+					</imageupload>
+					<hr>
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<hr>
+						<mybutton label="Labels.Buttons.save" click="saveOrUpdate()" icon="fa fa-save"></mybutton>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>

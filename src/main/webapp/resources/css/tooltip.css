@@ -1,0 +1,11 @@
+.tooltip_css {
+	border: 1px solid black;
+	width: 270px;
+	margin-left: 82px;
+	margin-top: -34px;
+	background-color: #555;
+	border-radius: 4px;
+	height: 28px;
+	color: #fff;
+	padding-left: 8px;
+}

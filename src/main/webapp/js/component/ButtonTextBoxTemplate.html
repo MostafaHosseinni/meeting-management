@@ -1,0 +1,16 @@
+<div ng-class="size">
+	<div class="input-group">
+		<label ng-class="labelSize"><i ng-if="required"
+			class="fa fa-asterisk"
+			style="color: darkred !important; font-size: 12px !important;"></i> <span
+			ng-bind="label"></span></label>
+		<div class="input-group">
+			<input type="text" class="form-control" ng-model="ngModel"
+				ng-required="required" ng-disabled="ngDisabled" ui-mask="{{mask}}"
+				model-view-value="true"><span class="input-group-btn">
+				<mybutton click="buttonClicked()" label="selectedOperation.title"
+					icon="{{selectedOperation.icon}}"></mybutton>
+			</span>
+		</div>
+	</div>
+</div>

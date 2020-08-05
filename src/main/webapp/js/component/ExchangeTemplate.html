@@ -1,0 +1,33 @@
+<br>
+<div class="col-md-12">
+	<div class="col-md-5">
+	<label ng-bind="suggestModel.allLabel"></label>
+		<select size=8 multiple  ng-dblclick="moveItem(selected, suggestModel.listData , selectedModel)"
+			ng-options="a[suggestModel.displayName] for a in suggestModel.listData"
+			ng-model="selected" style="width: 100%;"></select>
+	</div>
+	<div class="col-md-2">
+	</br>
+		<div class="col-md-1"></div>
+		<div class="col-md-10">
+			<button class="btn btn-success btn-block"
+				ng-click="moveItem(selected, suggestModel.listData , selectedModel)" title="انتفال به چپ">></button>
+
+			<button class="btn btn-danger btn-block"
+				ng-click="moveItem(removed , selectedModel , suggestModel.listData)" title="انتفال به راست"><</button>
+			<br>
+			<button class="btn btn-success btn-block"
+				ng-click="moveAll(suggestModel.listData , selectedModel)" title="انتفال به همه چپ">>></button>
+
+			<button class="btn btn-danger btn-block"
+				ng-click="moveAll( selectedModel , suggestModel.listData)" title="انتفال همه به راست"><<</button>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	<div class="col-md-5">
+		<label ng-bind="suggestModel.selectedLabel"></label>
+		<select size=8 multiple  ng-dblclick="moveItem(removed , selectedModel, suggestModel.listData)"
+			ng-options="a[suggestModel.displayName] for a in selectedModel"
+			ng-model="removed" style="width: 100%;"></select>
+	</div>
+</div>
