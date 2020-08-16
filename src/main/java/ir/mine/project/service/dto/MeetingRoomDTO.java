@@ -1,6 +1,5 @@
 package ir.mine.project.service.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ir.mine.project.base.dto.BaseDTO;
@@ -25,6 +24,6 @@ public class MeetingRoomDTO extends BaseDTO<Long> {
 
 	private String address;
 
-	private List<RoomServiceDTO> service = new ArrayList<>();
+	private List<RoomServiceDTO> service;
 
 }

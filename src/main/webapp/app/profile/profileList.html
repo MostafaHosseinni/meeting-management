@@ -44,7 +44,7 @@
 							</textbox>
 
 
-							<textbox size="6" label="Labels.Profile.mobileNumber" require="true"
+							<textbox size="6" label="Labels.Profile.mobileNumber" require="true" mask="99999999999"
 								model="modelData.mobileNumber"></textbox>
 
 							<textbox size="6" type="password" label="Labels.Profile.password" require="true"
@@ -58,10 +58,10 @@
 								model="modelData.profileType" combomodel="profileTypeModel"></combobox>
 
 
-							<textbox size="6" label="Labels.Profile.email" require="false" model="modelData.email">
+							<textbox size="6" label="Labels.Profile.email" require="false" model="modelData.email" type="email">
 							</textbox>
 
-							<textbox size="6" label="Labels.Profile.phoneNumber" require="false"
+							<textbox  size="6" label="Labels.Profile.phoneNumber" require="false" mask="99999999"
 								model="modelData.phoneNumber"></textbox>
 
 

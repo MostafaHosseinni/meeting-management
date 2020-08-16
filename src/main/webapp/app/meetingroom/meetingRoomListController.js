@@ -1,14 +1,18 @@
 app.controller("meetingRoomListController",
-	function ($scope, Labels, UiUtil, CurrentUser, CrudUtil) {
+	function ($scope, Labels, UiUtil, CurrentUser, CrudUtil, OperationUtil) {
 
 		$scope.preload = function () {
 
 			$scope.Labels = Labels;
 
-			$scope.titlePage = Labels.Generals.list + " "
-				+ Labels.MeetingRoom.main;
+			$scope.modelData = {};
+			$scope.modelData.service = [];
+
+			$scope.titlePage = Labels.Generals.list + " " +
+				Labels.MeetingRoom.main;
 
 			$scope.entityName = "MeetingRoom";
+
 
 			$scope.tableModel = UiUtil.getDefaultTableModel($scope,
 				$scope.entityName);
@@ -19,21 +23,70 @@ app.controller("meetingRoomListController",
 				UiUtil.getDefaultColumn(Labels.MeetingRoom.capacity,
 					"capacity"),
 				UiUtil.getDefaultColumn(Labels.MeetingRoom.address,
-					"address")];
+					"address")
+			];
 
-			// $scope.serviceModel = UiUtil
-			// 	.getDefualtAutoCompleteModel("RoomService",
-			// 		"id", "id");
-			// $scope.serviceModel.serviceName = "getAll";
 
-					}
+
+			$scope.ServiceTypeModel = UiUtil
+				.getDefaultServiceComboModel("ServiceType",
+					"title");
+
+
+			$scope.clientTableModel = UiUtil.getDefaultClientTableModel(
+				$scope, "RoomService");
+			$scope.clientTableModel.columns = [UiUtil.getDefaultColumn(
+					Labels.ServiceType.main, "serviceType.title"),
+				UiUtil.getDefaultColumn(Labels.ServiceType.serviceNumber, "serviceCount"),
+
+
+			];
+
+			$scope.clientTableModel.operations[0] = OperationUtil.getDefaultIconOperation('fa fa-trash', function (element, entityName) {
+				$scope.modelData.service = $scope.modelData.service
+					.filter(function (el) {
+						return el != element;
+					});
+			});
+			$scope.clientTableModel.nextPageLabel = Labels.Buttons.nextPage;
+			$scope.clientTableModel.previousPageLabel = Labels.Buttons.backPage;
+
+		}
+
+
+
 
 		$scope.load = function () {
 			$scope.preload();
+			$scope.temp = {};
+		}
+
+		$scope.checkEmpty = function () {
+			return $scope.tempForm.$valid;
+		}
+
+
+		$scope.addService = function () {
+			if (!$scope.checkEmpty()) {
+				alertWarning(Labels.Warning.fillForm);
+				return;
+			} else {
+				for (var i = 0; i < $scope.modelData.service.length; i++) {
+					if ($scope.modelData.service[i].serviceType.id == $scope.temp.serviceType.id) {
+						alertWarning(Labels.Warning.dataRedantant);
+						return;
+					}
+				}
+				$scope.modelData.service.push($scope.temp);
+				$scope.temp = {};
+
+			}
 		}
 
 		$scope.addItem = function () {
 			$scope.modelData = {};
+			$scope.modelData.service = [];
+			$scope.temp = {};
 		}
 
 		$scope.load();

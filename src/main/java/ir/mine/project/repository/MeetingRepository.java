@@ -26,8 +26,8 @@ public interface MeetingRepository extends BaseRepository<Meeting, Long> {
 	List<Meeting> findAllByMeetingDateBetweenAndMeetingStatusNot(ZonedDateTime startDate, ZonedDateTime endDate,
 			MeetingStatus status);
 
-	List<Meeting> findAllByInvitees_idInAndMeetingDateAndStartTimeBetweenAndEndTimeBetween(List<Long> inviteesId,
-			ZonedDateTime meetingDate, Integer startTime1, Integer endTime1, Integer startTime2, Integer endTime2);
+	List<Meeting> findAllByInvitees_idInAndMeetingDateBetweenAndStartTimeBetweenAndEndTimeBetween(List<Long> inviteesId,
+			ZonedDateTime meetingDateFrom, ZonedDateTime meetingDateTo, Integer startTime1, Integer endTime1, Integer startTime2, Integer endTime2);
 
 	@Query("select min(m.startTime) from Meeting m")
 	Integer getMinStartTimeAndMeetingStatusNot(MeetingStatus status);

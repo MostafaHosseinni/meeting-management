@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +24,7 @@ import javax.persistence.Table;
 import ir.mine.project.base.domin.BaseEntity;
 import ir.mine.project.base.fileManagment.converter.FileConverter;
 import ir.mine.project.base.fileManagment.dto.FileDetail;
+import ir.mine.project.domain.convertor.StringListConvertor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,9 +47,9 @@ public class Approvals extends BaseEntity<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String outOfApproval;
-
-	private String rules;
+	@Convert(converter = StringListConvertor.class)
+	@Column(length = 4000)
+	private List<String> outOfApproval;
 
 	private ZonedDateTime createDate;
 
@@ -62,10 +64,8 @@ public class Approvals extends BaseEntity<Long> {
 	@Column(length = 4000)
 	private FileDetail approvalFile;
 
-	private String approval;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Agenda> approvalRul;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Agenda> approvalRul;
 
 	@ManyToOne
 	private Profile creator;

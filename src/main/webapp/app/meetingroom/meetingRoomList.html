@@ -28,33 +28,44 @@
 				<hr>
 			</div>
 			<div class="modal-body" style="border: 1px;">
-				<form role="form" name="modelForm">
-					<div class="row">
-						<div class="form-group">
+				<div class="row">
+					<div class="form-group">
 
+						<form role="form" name="modelForm">
 							<textbox size="6" label="Labels.MeetingRoom.roomName" model="modelData.roomName"
-								require="false"></textbox>
+								require="true"></textbox>
 
 							<textbox size="6" label="Labels.MeetingRoom.capacity" model="modelData.capacity"
-								require="false"></textbox>
+								type="number" require="false"></textbox>
 
 							<textareabox size="12" label="Labels.MeetingRoom.address" model="modelData.address"
-								require="false">
-								</textareabox>
+								require="true">
+							</textareabox>
+						</form>
+ 							<form role="form" name="tempForm">
 
-								<!-- <multiselect size="6" label="Labels.MeetingRoom.service" model="modelData.service"
-								multimodel="serviceModel" ></multiselect> -->
+							<combobox size="6" label="Labels.ServiceType.main" model="temp.serviceType"
+								combomodel="ServiceTypeModel" require="true"></combobox>
+							<textbox size="4" label="Labels.ServiceType.serviceNumber" type="number"
+								model="temp.serviceCount" require="true">
+							</textbox>
+						</form>
+						<div class="col-md-1" style="margin-top: 2rem;">
 
-
+							<mybutton size="4" click="addService()" icon="fa fa-plus"></mybutton>
+						</div>
+						<div class="col-md-12">
+							<clienttable tablemodel="clientTableModel" elements="modelData.service"></clienttable>
 						</div>
 					</div>
-				</form>
+				</div>
 			</div>
-			<div class="modal-footer">
+			<div class=" modal-footer">
 				<hr>
 				<button type="button" class="btn btn-default pull-left" data-dismiss="modal"
 					ng-bind="Labels.Buttons.cancel"></button>
-				<mybutton label="Labels.Buttons.save" click="saveOrUpdate()" icon="fa fa-save"></mybutton>
+				<mybutton label="Labels.Buttons.save" click="saveOrUpdate()" icon="fa fa-save">
+				</mybutton>
 			</div>
 		</div>
 	</div>

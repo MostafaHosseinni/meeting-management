@@ -1,12 +1,12 @@
 <div class="table-responsive" data-pattern="priority-columns">
-	<table ng-if="tableModel"
-		class="table table-bordered table-striped datatable">
+	<table ng-if="tableModel" class="table table-bordered table-striped datatable">
 		<thead style="background-color: #27586f; color: #FAFAFA;">
 			<tr class="header-mine">
 				<th ng-if="tableModel.hasCheckBox"></th>
 				<th class="colNo"></th>
-				<th ng-repeat="column in tableModel.columns"
-					ng-bind="column.displayName"></th>
+				<th ng-repeat="column in tableModel.columns" ng-bind="column.displayName"></th>
+				<th ng-repeat="opt in tableModel.operations" class="colNo" ><a
+					class="btnNoAction"><span class="icon"></span></a></th>
 
 
 			</tr>
@@ -15,16 +15,12 @@
 			<tr
 				ng-repeat="element in elements | pagination: tableModel.pageNumber* tableModel.pageSize | limitTo: tableModel.pageSize">
 				<th ng-if="tableModel.hasCheckBox">
-					<div ng-if="tableModel.checkBoxType.type"
-						class="checkbox checkbox-purple col-fix-5">
-						<input type="checkbox" ng-model="element.check"
-							class="fishbiniCheck"
+					<div ng-if="tableModel.checkBoxType.type" class="checkbox checkbox-purple col-fix-5">
+						<input type="checkbox" ng-model="element.check" class="fishbiniCheck"
 							ng-change="tableModel.checkBoxType.action(element,element.check)"><label>
-						</label> <input ng-show="element.check" ng-model="element.description"
-							class="fishbinTag">
+						</label> <input ng-show="element.check" ng-model="element.description" class="fishbinTag">
 					</div>
-					<div ng-if="!tableModel.checkBoxType.type"
-						class="checkbox checkbox-purple col-fix-5">
+					<div ng-if="!tableModel.checkBoxType.type" class="checkbox checkbox-purple col-fix-5">
 						<input type="checkbox" ng-model="element.check"
 							ng-change="tableModel.checkBoxType.action(element,element.check)"><label>
 						</label>
@@ -33,13 +29,16 @@
 
 				<th ng-class="tableModel.indexCss(element)">{{$index+(tableModel.pageNumber*
 					tableModel.pageSize) + 1}}</th>
-				<th ng-repeat="column in tableModel.columns"
-					ng-class="tableModel.columnCss(element, column)"
-					title="{{tableModel.showTooltip(element,column)}}"
-					data-toggle="tooltip" data-placement="top"
+				<th ng-repeat="column in tableModel.columns" ng-class="tableModel.columnCss(element, column)"
+					title="{{tableModel.showTooltip(element,column)}}" data-toggle="tooltip" data-placement="top"
 					ng-bind="tableModel.valueRenderer(element,column.value)"
 					ng-click="tableModel.columnClicked(element , column)"></th>
 
+					<th ng-repeat="opt in tableModel.operations"><a
+					class="btnDefaultAction" data-toggle="modal"
+					data-target="#{{opt.modalId}}"
+					ng-click="opt.action(element, tableModel.entityName)"><i
+						ng-class="opt.icon"></i></a></th>
 			</tr>
 		</tbody>
 	</table>
@@ -47,18 +46,13 @@
 <br>
 <hr>
 <center>
-	<button type="button" class="btn btn-primary btn-rounded  waves-effect"
-		ng-click="tableModel.previousPage()">&lt;
-		هفته ی قبلی</button>
-	<button type="button"
-		class="btn btn-default btn-rounded  btn-mine waves-effect">
+	<button type="button" class="btn btn-primary btn-rounded  waves-effect" ng-click="tableModel.previousPage()"
+		ng-bind="tableModel.previousPageLabel">
 	</button>
-	<button type="button" class="btn btn-primary btn-rounded  waves-effect"
-		ng-click="tableModel.nextPage()">هفته ی بعدی
-		&gt;</button></center>
+
+	<button type="button" class="btn btn-primary btn-rounded  waves-effect" ng-click="tableModel.nextPage()"
+		ng-bind="tableModel.nextPageLabel">
+	</button></center>
 <script type="text/ng-template" id="dataPopoverInput">
     		<input class="" type="text" ng-model="element.description">
 	</script>
-
-
-

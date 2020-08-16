@@ -6,7 +6,7 @@ app.factory('BaseTableUtil', [
 
 	return {
 		getBaseTable : function(entityName) {
-			return CrudUtil.getCachableService(entityName, null, null);
+			return CrudUtil.getAll(entityName);
 		},
 	}
 

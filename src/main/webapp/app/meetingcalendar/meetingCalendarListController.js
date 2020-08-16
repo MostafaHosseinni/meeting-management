@@ -7,8 +7,8 @@ app
 
 				$scope.Labels = Labels;
 
-				$scope.titlePage = Labels.Generals.list + " "
-					+ Labels.MeetingCalendar.main;
+				$scope.titlePage = Labels.Generals.list + " " +
+					Labels.MeetingCalendar.main;
 
 				$scope.id = $uiRouter.globals.params.id;
 
@@ -24,7 +24,9 @@ app
 				$scope.dayDiff = 0;
 
 				$scope.weekday = ['دوشنبه', 'سه شنبه', 'چهارشنبه',
-					'پنج شنبه', 'جمعه', 'شنبه', 'یک شنبه'];
+					'پنج شنبه', 'جمعه', 'شنبه', 'یک شنبه'
+				];
+
 
 				$scope.meetingStatusModel = UiUtil
 					.getDefaultLocalComboModel([
@@ -36,7 +38,8 @@ app
 							Labels.MeetingStatus.CONFIRMED),
 						UiUtil.getDefaultComboLocalData(
 							Labels.MeetingStatus.REJECT,
-							Labels.MeetingStatus.REJECT),]);
+							Labels.MeetingStatus.REJECT),
+					]);
 
 				$scope.meetingTypeModel = UiUtil
 					.getDefaultLocalComboModel([
@@ -45,7 +48,8 @@ app
 							Labels.MeetingType.MEETING),
 						UiUtil.getDefaultComboLocalData(
 							Labels.MeetingType.APPOINMENT,
-							Labels.MeetingType.APPOINMENT),]);
+							Labels.MeetingType.APPOINMENT),
+					]);
 
 				$scope.meetingPositionModel = UiUtil
 					.getDefaultLocalComboModel([
@@ -54,11 +58,14 @@ app
 							Labels.MeetingPosition.HOST),
 						UiUtil.getDefaultComboLocalData(
 							Labels.MeetingPosition.GUEST,
-							Labels.MeetingPosition.GUEST)]);
+							Labels.MeetingPosition.GUEST)
+					]);
 
 				$scope.tableModel = UiUtil.getDefaultClientTableModel(
 					$scope, "MeetingCalendar");
 				$scope.tableModel.pageSize = 7;
+
+				$scope.tableModel.operations = [];
 
 				$scope.tableModel.nextPage = function () {
 					$scope.dayDiff = $scope.dayDiff + 1;
@@ -70,6 +77,10 @@ app
 					$scope.callServiceMinWorking();
 
 				}
+
+				$scope.tableModel.nextPageLabel = Labels.Meeting.nextWeek;
+				$scope.tableModel.previousPageLabel = Labels.Meeting.backWeek;
+
 
 
 
@@ -128,7 +139,7 @@ app
 
 					var columnValue = element[value];
 					if (columnValue.id == null) {
-						alertWarning(Labels.Warning.meetingIsEmpty);
+						// alertWarning(Labels.Warning.meetingIsEmpty);
 					} else {
 						CrudUtil
 							.getById('Meeting', columnValue.id)
@@ -156,15 +167,18 @@ app
 					return "";
 
 				}
-				
+
+				$scope.newAgenda = '';
 				$scope.operations = [];
 				$scope.operations.push(OperationUtil.getDefaultIconOperation(
-					'fa fa-plus', function () {
-						if ($scope.modelData.agenda == null)
-							$scope.modelData.agenda = [];
-						$scope.modelData.agenda.push($scope.newAgenda);
-						$scope.newAgenda = null;
-
+					'fa fa-plus',
+					function () {
+						if ($scope.newAgenda != null && "" != $scope.newAgenda) {
+							if ($scope.modelData.agenda == null)
+								$scope.modelData.agenda = [];
+							$scope.modelData.agenda.push($scope.newAgenda);
+							$scope.newAgenda = null;
+						}
 					}));
 
 
@@ -338,11 +352,11 @@ app
 			$scope.reject = function () {
 				CrudUtil.customGetService('Meeting', 'rejectMeeting',
 					$scope.modelData.id).then(function () {
-						$('#MeetingView').modal('hide');
-						alertSuccess(Labels.Success.reject);
-						$scope.callServiceMinWorking();
+					$('#MeetingView').modal('hide');
+					alertSuccess(Labels.Success.reject);
+					$scope.callServiceMinWorking();
 
-					});
+				});
 			}
 
 			$scope.preCheck = function () {
@@ -354,16 +368,20 @@ app
 
 				CrudUtil.customPostService('Meeting', $scope.modelData,
 					'preCheck').then(function (response) {
+					if (response.titleEroor == null) {
+						$scope.saveOrUpdate();
 
-						var r = confirm(response.titleEroor);
-						if (r == true) {
-							debugger
-							$scope.saveOrUpdate();
-						} else {
-							$scope.afterSaveOrUpdateSuccessful();
-						}
+						return;
+					}
+					var r = confirm(response.titleEroor);
+					if (r == true) {
+						debugger
+						$scope.saveOrUpdate();
+					} else {
+						$scope.afterSaveOrUpdateSuccessful();
+					}
 
-					});
+				});
 			}
 
 			$scope.saveOrUpdate = function () {

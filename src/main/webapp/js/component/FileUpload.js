@@ -19,8 +19,10 @@ app.directive('fileupload', ['Labels' , function(Labels) {
 	  $scope.test = {};
 	  
 	  $scope.fileChooserName = attr.model;
-	  
+    
+    
 	  $scope.chooseFile = function (){
+      debugger
 		  document.getElementById($scope.fileChooserName).click();
 	  }
 	  

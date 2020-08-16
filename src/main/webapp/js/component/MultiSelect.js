@@ -34,8 +34,12 @@ app.directive('multiselect', [
 
 
 			$scope.addOperation = OperationUtil.getDefaultIconOperation(
-				'fa fa-plus', function () {
+				'fa fa-plus',
+				function () {
+					if($scope.addData)
 					$scope.model.push($scope.addData);
+					$scope.addData = null;
+
 				});
 
 			$scope.removeItem = function (item) {
@@ -50,4 +54,5 @@ app.directive('multiselect', [
 			}
 		}
 		return directive;
-	}]);
+	}
+]);

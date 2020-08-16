@@ -10,8 +10,10 @@ import ir.mine.project.base.authorization.autoupdate.annot.SecurityModel;
 import ir.mine.project.base.authorization.autoupdate.annot.SecurityOperation;
 import ir.mine.project.base.service.BaseServiceImpl;
 import ir.mine.project.domain.Approvals;
+import ir.mine.project.domain.enumeration.MeetingStatus;
 import ir.mine.project.repository.ApprovalsRepository;
 import ir.mine.project.service.ApprovalsService;
+import ir.mine.project.service.MeetingService;
 import ir.mine.project.service.ProfileService;
 
 /**
@@ -30,6 +32,9 @@ public class ApprovalsServiceImpl extends BaseServiceImpl<Approvals, Long, Appro
 
 	@Autowired
 	ProfileService profileService;
+	
+	@Autowired
+	MeetingService meetingService;
 
 	public ApprovalsServiceImpl(ApprovalsRepository approvalsRepository) {
 		super(approvalsRepository);
@@ -39,7 +44,10 @@ public class ApprovalsServiceImpl extends BaseServiceImpl<Approvals, Long, Appro
 		if (t.getId() == null) {
 			t.setCreateDate(ZonedDateTime.now());
 			t.setCreator(profileService.getCurrentProfile());
+			t.getMeeting().setMeetingStatus(MeetingStatus.CONFIRMED);
+			meetingService.save(t.getMeeting());
 		}
+		
 		return super.save(t);
 	}
 

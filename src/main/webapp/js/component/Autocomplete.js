@@ -57,7 +57,7 @@ angular
                       $scope.imageUri = $scope.autoObject.imageUri;
                       $scope.searchFields = $scope.autoObject.searchFields;
                       $scope.minLengthUser = $scope.autoObject.minLengthUser;
-                      $scope.id = $scope.autoObject.id;
+                      $scope.id = attr.selectedobject;
                       $scope.readOnly = $scope.autoObject.readOnly;
 
                       if ($scope.selectedObject)

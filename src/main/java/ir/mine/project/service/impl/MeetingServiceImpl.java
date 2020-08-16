@@ -63,8 +63,10 @@ public class MeetingServiceImpl extends BaseServiceImpl<Meeting, Long, MeetingRe
 			t.setCreateDate(ZonedDateTime.now());
 			t.setCreator(profileService.getCurrentProfile());
 			t.setMeetingStatus(MeetingStatus.NEW);
-
 		}
+		ZonedDateTime meetingDate = t.getMeetingDate();
+		meetingDate = meetingDate.plusHours(t.getStartTime());
+		t.setMeetingDate(meetingDate);
 		return super.save(t);
 	}
 
@@ -133,11 +135,13 @@ public class MeetingServiceImpl extends BaseServiceImpl<Meeting, Long, MeetingRe
 		for (Profile profile : t.getInvitees()) {
 
 			inviteesId.add(profile.getId());
-		}
 
+		}
+		ZonedDateTime stratDate = CalenderUtil.getDayStart(t.getMeetingDate());
+		ZonedDateTime endDate = CalenderUtil.getDayEnd(t.getMeetingDate());
 		List<Meeting> inviteesMeetings = baseRepository
-				.findAllByInvitees_idInAndMeetingDateAndStartTimeBetweenAndEndTimeBetween(inviteesId,
-						t.getMeetingDate(), t.getStartTime(), t.getEndTime(), t.getStartTime(), t.getEndTime());
+				.findAllByInvitees_idInAndMeetingDateBetweenAndStartTimeBetweenAndEndTimeBetween(inviteesId, stratDate,
+						endDate, t.getStartTime(), t.getEndTime(), t.getStartTime(), t.getEndTime());
 		if (!inviteesMeetings.isEmpty())
 			return false;
 

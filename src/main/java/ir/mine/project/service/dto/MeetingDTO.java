@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.mine.project.base.dto.BaseDTO;
-import ir.mine.project.domain.Profile;
 import lombok.Getter;
 import lombok.Setter;
 

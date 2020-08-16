@@ -22,9 +22,7 @@ public class ApprovalsDTO extends BaseDTO<Long> {
 
 	private String approval;
 
-	private String outOfApproval;
-
-	private String rules;
+	private List<String> outOfApproval;
 
 	private String createDate;
 

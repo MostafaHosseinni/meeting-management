@@ -64,7 +64,9 @@ app
 					deleteImage: "حذف تصویر",
 					conformityCheck: "بررسی تطابق",
 					approvalConfirm: "ثبت مصوبه",
-					rejected: "رد "
+					rejected: "رد ",
+					nextPage : "صفحه بعدی",
+					backPage: "صفحه قبلی"
 
 				},
 				Success: {
@@ -83,12 +85,14 @@ app
 					meetingIsBooked: "جلسه در این زمان رزرو شده است",
 					dayIsHoliday: "این روز تعطیل می باشد",
 					meetingIsEmpty: "جلسه ای ذخیره نشده است",
+					dataRedantant : "داده تکراری قابل قبول نیست"
 
 				},
 				Error: {
 					accessDeniedTitle: "خطای دسترسی",
 					accessDeniedContent: "با عرض پوزش حساب کاربری شما به صفحه مورد نظر دسترسی ندارد",
 					currentPassword: "رمز عبور فعلی صحیح نمی باشد",
+					notEqualPassword : "رمز عبور و تکرار آن تطابق ندارند",
 				},
 
 				ChangePassword: {
@@ -150,7 +154,8 @@ app
 					meeting: "جلسه",
 					approvalFile: "فایل مصوبه",
 					presents: "حاضرین",
-					absents: "غایبین"
+					absents: "غایبین",
+					newOutOfApproval :"مصوبات خارج از دستور جدید"
 				},
 				Holiday: {
 					main: "تعطیلات",
@@ -176,7 +181,9 @@ app
 					boss: "رئیس جلسه",
 					invitees: "مدعوین",
 					agenda: "دستور جلسه",
-					newAgenda: "دستور جلسه جدید"
+					newAgenda: "دستور جلسه جدید",
+					nextWeek :"هفته ی بعد",
+					backWeek:"هفته ی قبل"
 				},
 				MeetingRoom: {
 					main: "مکان جلسه",
@@ -184,12 +191,15 @@ app
 					capacity: "ظرفیت",
 					address: "مکان برگزاری",
 					meeting: "جلسه",
-					service: "امکانات"
+					service: "امکانات",
+					
+
 				},
 				ServiceType: {
-					main: "نوع خدمات",
+					main: "امکانات",
 					title: "عنوان",
 					roomService: "خدمات اتاق",
+					serviceNumber :"تعداد"
 				},
 				Sms: {
 					main: "پیامک",

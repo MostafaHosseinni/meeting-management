@@ -15,13 +15,13 @@ public enum MeetingExceptionReason implements IHasDisplayName {
 	public String toString() {
 		switch (this) {
 		case INVALID_WORKING_HOURS:
-			return "ساعت کاری نامعتبر";
+			return "جلسه در ساعت کاری نامعتبر تنظیم شده است آیا از ثبت آن اطمینان دارید ؟";
 		case DAY_IN_QUESTION_IS_HOLIDAY:
-			return "روز مد نظر تعطیل است ";
+			return "روز مد نظر شما برای ثبت جلسه تعطیل است آیا از ثبت آن اطمینان دارید ؟  ";
 		case DESIRED_ROOM_IS_FULL:
-			return "اتاق مد نظر پر است";
+			return "در ساعت انتخابی شما اتاق مد نظر اشغال است آیا از برگزاری همزمان جلسه اطمینان دارید ؟";
 		case PERSON_HAS_MEETING_AT_THIS_TIME:
-			return "شخص مورد نظر جلسه دارد";
+			return "بعضی از اعضای جلسه در زمان مورد نظر جلسه دیگری دارند آیا از ثبت جلسه با حضور این افراد اطمینان دارید ؟ ";
 		default:
 			return "";
 		}
