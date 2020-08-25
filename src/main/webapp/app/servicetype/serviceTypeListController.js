@@ -13,8 +13,11 @@ app.controller("serviceTypeListController",
 				$scope.tableModel = UiUtil.getDefaultTableModel($scope,
 						$scope.entityName);
 
-				$scope.tableModel.columns = [ UiUtil.getDefaultColumn(
-						Labels.ServiceType.title, "title") ];
+				$scope.tableModel.columns = [
+						UiUtil.getDefaultColumn(Labels.ServiceType.title,
+								"title"),
+						UiUtil.getDefaultColumn(Labels.ServiceType.expireDate,
+								"expireDate") ];
 
 			}
 
@@ -38,7 +41,6 @@ app.controller("serviceTypeListController",
 					alertWarning(Labels.Warning.fillForm);
 					return;
 				}
-
 				if (!$scope.modelData.id) {
 					CrudUtil.save($scope.entityName, $scope.modelData).then(
 							function(response) {

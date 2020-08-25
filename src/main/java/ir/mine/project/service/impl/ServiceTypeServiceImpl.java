@@ -1,5 +1,8 @@
 package ir.mine.project.service.impl;
 
+import java.time.ZonedDateTime;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +30,11 @@ public class ServiceTypeServiceImpl extends BaseServiceImpl<ServiceType, Long, S
 
 	public ServiceTypeServiceImpl(ServiceTypeRepository servicetypeRepository) {
 		super(servicetypeRepository);
+	}
+
+	@Override
+	public List<ServiceType> findAllValid() {
+		return baseRepository.findAllByExpireDateGreaterThan(ZonedDateTime.now());
 	}
 
 }

@@ -18,4 +18,6 @@ public class ServiceTypeDTO extends BaseDTO<Long> {
 
 	private String title;
 
+	private String expireDate;
+
 }

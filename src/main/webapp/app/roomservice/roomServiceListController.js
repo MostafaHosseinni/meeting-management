@@ -1,7 +1,7 @@
-app.controller("roomServiceListController", function($scope, Labels, UiUtil,
-		CurrentUser, CrudUtil) {
+app.controller("roomServiceListController", function ($scope, Labels, UiUtil,
+	CurrentUser, CrudUtil) {
 
-	$scope.preload = function() {
+	$scope.preload = function () {
 
 		$scope.Labels = Labels;
 
@@ -10,30 +10,31 @@ app.controller("roomServiceListController", function($scope, Labels, UiUtil,
 		$scope.entityName = "RoomService";
 
 		$scope.tableModel = UiUtil.getDefaultTableModel($scope,
-				$scope.entityName);
+			$scope.entityName);
 
-		
-		
-		$scope.tableModel.columns = [ UiUtil.getDefaultColumn(Labels.RoomService.serviceCount, "serviceCount"), UiUtil.getDefaultColumn(Labels.RoomService.meetingRoom, "meetingRoom.id"), UiUtil.getDefaultColumn(Labels.RoomService.serviceType, "serviceType.id")];
-$scope.meetingRoomModel = UiUtil.getDefualtAutoCompleteModel ("MeetingRoom", "id" , "id");$scope.serviceTypeModel = UiUtil.getDefualtAutoCompleteModel ("ServiceType", "id" , "id");
-		
+
+
+		$scope.tableModel.columns = [UiUtil.getDefaultColumn(Labels.RoomService.serviceCount, "serviceCount"), UiUtil.getDefaultColumn(Labels.RoomService.meetingRoom, "meetingRoom.id"), UiUtil.getDefaultColumn(Labels.RoomService.serviceType, "serviceType.id")];
+		$scope.meetingRoomModel = UiUtil.getDefualtAutoCompleteModel("MeetingRoom", "id", "id");
+		$scope.serviceTypeModel = UiUtil.getDefualtAutoCompleteModel("ServiceType", "id", "id");
+
 	}
 
-	$scope.load = function() {
+	$scope.load = function () {
 		$scope.preload();
 	}
 
-	$scope.addItem = function() {
+	$scope.addItem = function () {
 		$scope.modelData = {};
 	}
 
 	$scope.load();
 
-	$scope.validate = function() {
+	$scope.validate = function () {
 		return $scope.modelForm.$valid;
 	}
 
-	$scope.saveOrUpdate = function() {
+	$scope.saveOrUpdate = function () {
 
 		if (!$scope.validate()) {
 			alertWarning(Labels.Warning.fillForm);
@@ -42,21 +43,21 @@ $scope.meetingRoomModel = UiUtil.getDefualtAutoCompleteModel ("MeetingRoom", "id
 
 		if (!$scope.modelData.id) {
 			CrudUtil.save($scope.entityName, $scope.modelData).then(
-					function(response) {
-						alertSuccess(Labels.Success.save);
-						$scope.afterSaveOrUpdateSuccessful(true);
-					});
+				function (response) {
+					alertSuccess(Labels.Success.save);
+					$scope.afterSaveOrUpdateSuccessful(true);
+				});
 		} else {
 			CrudUtil.update($scope.entityName, $scope.modelData).then(
-					function(response) {
-						alertSuccess(Labels.Success.update);
-						$scope.afterSaveOrUpdateSuccessful(false);
-					});
+				function (response) {
+					alertSuccess(Labels.Success.update);
+					$scope.afterSaveOrUpdateSuccessful(false);
+				});
 		}
 
 	}
 
-	$scope.afterSaveOrUpdateSuccessful = function(isSave) {
+	$scope.afterSaveOrUpdateSuccessful = function (isSave) {
 		$scope.modelData = {};
 		$('#' + $scope.entityName + 'View').modal('hide');
 		$scope.tableModel.callService();

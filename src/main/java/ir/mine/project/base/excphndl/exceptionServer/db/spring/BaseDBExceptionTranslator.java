@@ -52,10 +52,12 @@ public abstract class BaseDBExceptionTranslator<Exc extends RuntimeException> im
             db = DB.oracle;
         } else if (dbDriver.contains("postgresql")) {
             db = DB.postgresql;
+        } else if (dbDriver.contains("mysql")) {
+            db = DB.mysql;
         }
     }
 
     public enum DB {
-        oracle, postgresql
+        oracle, postgresql, mysql
     }
 }

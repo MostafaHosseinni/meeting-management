@@ -21,7 +21,7 @@ public enum ProfileType implements IHasDisplayName {
 		case SECRATERY:
 			return "دبیر";
 		case INVITEES:
-			return "مدعوین";
+			return "مدعو";
 		default:
 			break;
 		}

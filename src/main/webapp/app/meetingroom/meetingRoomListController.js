@@ -23,7 +23,9 @@ app.controller("meetingRoomListController",
 				UiUtil.getDefaultColumn(Labels.MeetingRoom.capacity,
 					"capacity"),
 				UiUtil.getDefaultColumn(Labels.MeetingRoom.address,
-					"address")
+					"address"),
+				UiUtil.getDefaultColumn(Labels.MeetingRoom.expireDate,
+					"expireDate")
 			];
 
 
@@ -48,6 +50,9 @@ app.controller("meetingRoomListController",
 						return el != element;
 					});
 			});
+			$scope.clientTableModel.rowTitle = "#";
+			$scope.clientTableModel.operationTitle = Labels.Generals.operation;
+
 			$scope.clientTableModel.nextPageLabel = Labels.Buttons.nextPage;
 			$scope.clientTableModel.previousPageLabel = Labels.Buttons.backPage;
 

@@ -7,6 +7,17 @@ app
 				app: "سامانه مدیریت جلسات",
 				Generals: {
 					detailView: "جزئیات",
+					addMeeing: "افزودن جلسه",
+					detailMeeting: "مشاهده جزئیات جلسه",
+					addHoliday: "افزودن تعطیلات",
+					detailHoliday: "مشاهده جزئیات تعطیلات",
+					addRoom: "افزودن مکان جلسه",
+					detailRoom: "مشاهده جزئیات مکان جلسه ",
+					addService: "افزودن امکانات",
+					detailService: "مشاهده جزئیات امکانات",
+					detailWorkingHour: "مشاهده جزئیات ساعت کاری",
+					addProfile: "افزودن اطلاعات شخصی",
+					detailProfile: "مشاهده جزئیات اطلاعات شخصی",
 					list: "فهرست",
 					add: "ایجاد",
 					edit: "ویرایش",
@@ -17,9 +28,11 @@ app
 					report: "گزارش",
 					search: "جستجوی",
 					selectedItems: "موارد انتخابی",
-					radif: "ردیف",
-					operations: "اقدامات"
+					radif: "#",
+					operations: "اقدامات",
+					operation: "عملیات"
 				},
+
 
 				Menu: {
 					main: "فهرست",
@@ -65,7 +78,7 @@ app
 					conformityCheck: "بررسی تطابق",
 					approvalConfirm: "ثبت مصوبه",
 					rejected: "رد ",
-					nextPage : "صفحه بعدی",
+					nextPage: "صفحه بعدی",
 					backPage: "صفحه قبلی"
 
 				},
@@ -85,14 +98,14 @@ app
 					meetingIsBooked: "جلسه در این زمان رزرو شده است",
 					dayIsHoliday: "این روز تعطیل می باشد",
 					meetingIsEmpty: "جلسه ای ذخیره نشده است",
-					dataRedantant : "داده تکراری قابل قبول نیست"
+					dataRedantant: "داده تکراری قابل قبول نیست"
 
 				},
 				Error: {
 					accessDeniedTitle: "خطای دسترسی",
 					accessDeniedContent: "با عرض پوزش حساب کاربری شما به صفحه مورد نظر دسترسی ندارد",
 					currentPassword: "رمز عبور فعلی صحیح نمی باشد",
-					notEqualPassword : "رمز عبور و تکرار آن تطابق ندارند",
+					notEqualPassword: "رمز عبور و تکرار آن تطابق ندارند",
 				},
 
 				ChangePassword: {
@@ -135,7 +148,7 @@ app
 				ProfileType: {
 					admin: "مدیر سیستم",
 					secratery: "دبیر",
-					invitees: "مدعوین",
+					invitees: "مدعو",
 				},
 				Agenda: {
 					ruls: "دستور جلسه",
@@ -155,7 +168,7 @@ app
 					approvalFile: "فایل مصوبه",
 					presents: "حاضرین",
 					absents: "غایبین",
-					newOutOfApproval :"مصوبات خارج از دستور جدید"
+					newOutOfApproval: "مصوبات خارج از دستور جدید"
 				},
 				Holiday: {
 					main: "تعطیلات",
@@ -182,24 +195,25 @@ app
 					invitees: "مدعوین",
 					agenda: "دستور جلسه",
 					newAgenda: "دستور جلسه جدید",
-					nextWeek :"هفته ی بعد",
-					backWeek:"هفته ی قبل"
+					nextWeek: "هفته بعد",
+					backWeek: "هفته قبل"
 				},
 				MeetingRoom: {
 					main: "مکان جلسه",
-					roomName: "نام اتاق",
+					roomName: "نام اتاق جلسه",
 					capacity: "ظرفیت",
 					address: "مکان برگزاری",
 					meeting: "جلسه",
 					service: "امکانات",
-					
+					expireDate: "تاریخ انقضا"
 
 				},
 				ServiceType: {
 					main: "امکانات",
 					title: "عنوان",
 					roomService: "خدمات اتاق",
-					serviceNumber :"تعداد"
+					serviceNumber: "تعداد",
+					expireDate: "تاریخ انقضا"
 				},
 				Sms: {
 					main: "پیامک",

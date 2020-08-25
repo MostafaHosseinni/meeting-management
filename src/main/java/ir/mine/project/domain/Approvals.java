@@ -22,8 +22,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import ir.mine.project.base.domin.BaseEntity;
-import ir.mine.project.base.fileManagment.converter.FileConverter;
-import ir.mine.project.base.fileManagment.dto.FileDetail;
 import ir.mine.project.domain.convertor.StringListConvertor;
 import lombok.Getter;
 import lombok.Setter;
@@ -59,10 +57,6 @@ public class Approvals extends BaseEntity<Long> {
 
 	@OneToOne
 	private Meeting meeting;
-
-	@Convert(converter = FileConverter.class)
-	@Column(length = 4000)
-	private FileDetail approvalFile;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Agenda> approvalRul;

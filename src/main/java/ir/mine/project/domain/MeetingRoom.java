@@ -1,5 +1,6 @@
 package ir.mine.project.domain;
 
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,6 +40,8 @@ public class MeetingRoom extends BaseEntity<Long> {
 	private String capacity;
 
 	private String address;
+
+	private ZonedDateTime expireDate;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<RoomService> service = new HashSet<>();

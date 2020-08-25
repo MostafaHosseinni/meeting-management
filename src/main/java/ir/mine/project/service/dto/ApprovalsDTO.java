@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.mine.project.base.dto.BaseDTO;
-import ir.mine.project.base.fileManagment.dto.FileDetailDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,8 +32,6 @@ public class ApprovalsDTO extends BaseDTO<Long> {
 	private MeetingDTO meeting;
 
 	private List<AgendaDTO> approvalRul;
-
-	private FileDetailDTO approvalFile;
 
 	private ProfileDTO creator;
 

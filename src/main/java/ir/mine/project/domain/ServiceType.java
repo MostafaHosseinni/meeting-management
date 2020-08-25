@@ -1,5 +1,8 @@
 package ir.mine.project.domain;
 
+import java.time.ZonedDateTime;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +32,9 @@ public class ServiceType extends BaseEntity<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(unique = true)
 	private String title;
+
+	private ZonedDateTime expireDate;
 
 }

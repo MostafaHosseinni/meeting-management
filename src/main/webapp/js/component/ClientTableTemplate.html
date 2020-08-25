@@ -3,9 +3,9 @@
 		<thead style="background-color: #27586f; color: #FAFAFA;">
 			<tr class="header-mine">
 				<th ng-if="tableModel.hasCheckBox"></th>
-				<th class="colNo"></th>
+				<th class="colNo" ng-bind = "tableModel.rowTitle"></th>
 				<th ng-repeat="column in tableModel.columns" ng-bind="column.displayName"></th>
-				<th ng-repeat="opt in tableModel.operations" class="colNo" ><a
+				<th ng-repeat="opt in tableModel.operations" class="colNo" ng-bind = "tableModel.operationTitle"><a
 					class="btnNoAction"><span class="icon"></span></a></th>
 
 

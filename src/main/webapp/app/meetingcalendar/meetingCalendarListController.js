@@ -78,6 +78,8 @@ app
 
 				}
 
+
+				$scope.tableModel.rowTitle = "#";
 				$scope.tableModel.nextPageLabel = Labels.Meeting.nextWeek;
 				$scope.tableModel.previousPageLabel = Labels.Meeting.backWeek;
 

@@ -24,6 +24,8 @@ public class MeetingRoomDTO extends BaseDTO<Long> {
 
 	private String address;
 
+	private String expireDate;
+
 	private List<RoomServiceDTO> service;
 
 }

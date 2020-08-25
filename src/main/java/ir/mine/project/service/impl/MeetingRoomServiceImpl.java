@@ -1,5 +1,8 @@
 package ir.mine.project.service.impl;
 
+import java.time.ZonedDateTime;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +30,11 @@ public class MeetingRoomServiceImpl extends BaseServiceImpl<MeetingRoom, Long, M
 
 	public MeetingRoomServiceImpl(MeetingRoomRepository meetingroomRepository) {
 		super(meetingroomRepository);
+	}
+
+	@Override
+	public List<MeetingRoom> findAllValid() {
+		return baseRepository.findAllByExpireDateGreaterThan(ZonedDateTime.now());
 	}
 
 }

@@ -1,5 +1,5 @@
 app.controller("approvalsListController",
-	function ($scope, Labels, UiUtil, CrudUtil, FileUploadUtil,
+	function ($scope, Labels, UiUtil, CrudUtil,
 		$uiRouter, OperationUtil, $location) {
 
 		$scope.preload = function () {
@@ -68,7 +68,8 @@ app.controller("approvalsListController",
 						return el != element;
 					});
 			});
-
+			$scope.tableModel.rowTitle = "#";
+			$scope.tableModel.operationTitle = Labels.Generals.operation;
 			$scope.tableModel.nextPageLabel = Labels.Buttons.nextPage;
 			$scope.tableModel.previousPageLabel = Labels.Buttons.backPage;
 
@@ -95,22 +96,22 @@ app.controller("approvalsListController",
 			});
 
 			$scope.checkEmptyApproval = function () {
-			return $scope.templateForm.$valid;
-		}
+				return $scope.templateForm.$valid;
+			}
 
 			$scope.addOutOfApproval = function () {
 				if (!$scope.checkEmptyApproval()) {
-				alertWarning(Labels.Warning.fillForm);
-				return;
-			} else {
-			
-				if ($scope.modelData.outOfApproval == null)
-					$scope.modelData.outOfApproval = [];
-				$scope.modelData.outOfApproval.push($scope.template.newOutOfApproval);
-				$scope.template.newOutOfApproval = null;
+					alertWarning(Labels.Warning.fillForm);
+					return;
+				} else {
 
+					if ($scope.modelData.outOfApproval == null)
+						$scope.modelData.outOfApproval = [];
+					$scope.modelData.outOfApproval.push($scope.template.newOutOfApproval);
+					$scope.template.newOutOfApproval = null;
+
+				}
 			}
-		}
 
 		}
 
@@ -148,7 +149,7 @@ app.controller("approvalsListController",
 			}
 		}
 
-	
+
 
 		$scope.addItem = function () {
 			$scope.modelData = {};
@@ -159,18 +160,6 @@ app.controller("approvalsListController",
 		$scope.saveOrUpdate = function () {
 
 
-			if ($scope.modelData.approvalFile) {
-
-				FileUploadUtil.uploadFile(
-					$scope.modelData.approvalFile).then(function (file) {
-					$scope.modelData.approvalFile = file;
-					$scope.callServiceAfterChecking();
-				})
-			} else
-				$scope.callServiceAfterChecking();
-		}
-
-		$scope.callServiceAfterChecking = function () {
 			$scope.modelData.presents = $scope.presentModel.listData;
 			if (!$scope.modelData.id) {
 				CrudUtil.save($scope.entityName, $scope.modelData).then(
