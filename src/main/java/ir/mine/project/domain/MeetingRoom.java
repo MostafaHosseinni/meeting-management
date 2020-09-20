@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,12 +36,15 @@ public class MeetingRoom extends BaseEntity<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(unique = true, nullable = false)
 	private String roomName;
 
+	@Column(nullable = false)
 	private String capacity;
 
 	private String address;
 
+	@Column(nullable = false)
 	private ZonedDateTime expireDate;
 
 	@OneToMany(cascade = CascadeType.ALL)

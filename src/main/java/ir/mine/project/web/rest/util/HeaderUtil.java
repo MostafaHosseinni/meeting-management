@@ -20,6 +20,15 @@ public final class HeaderUtil {
         headers.add("X-eApp-params", param);
         return headers;
     }
+    
+    public static HttpHeaders createAlert(String exceptionType, String erorrType, String entityName, String param) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("X-eApp-exceptionType", exceptionType);
+		headers.add("X-eApp-erorrType", erorrType);
+		headers.add("X-eApp-entityName", entityName);
+		headers.add("X-eApp-param", param);
+		return headers;
+	}
 
     public static HttpHeaders createEntityCreationAlert(String entityName, String param) {
         return createAlert("A new " + entityName + " is created with identifier " + param, param);

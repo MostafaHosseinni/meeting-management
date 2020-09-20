@@ -44,16 +44,20 @@ public class Meeting extends BaseEntity<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false)
 	private String title;
 
 	private ZonedDateTime createDate;
 
 	private ZonedDateTime lastModifiedDate;
 
+	@Column(nullable = false)
 	private ZonedDateTime meetingDate;
 
+	@Column(nullable = false)
 	private Integer startTime;
 
+	@Column(nullable = false)
 	private Integer endTime;
 
 	private MeetingStatus meetingStatus;

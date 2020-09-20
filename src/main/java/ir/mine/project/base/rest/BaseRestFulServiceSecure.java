@@ -102,9 +102,9 @@ public class BaseRestFulServiceSecure<E extends BaseEntity<PK>, D extends BaseDT
 		return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
 	}
 
-	@ExceptionHandler
-	public void handleException() {
-		System.out.println("exception occured");
-	}
+//	@ExceptionHandler
+//	public void handleException() {
+//		System.out.println("exception occured");
+//	}
 
 }

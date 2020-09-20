@@ -32,10 +32,9 @@ public class Holiday extends BaseEntity<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private ZonedDateTime holidayDate;
 
 	private String description;
-
 
 }

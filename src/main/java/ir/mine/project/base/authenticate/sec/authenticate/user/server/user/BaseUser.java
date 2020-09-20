@@ -45,7 +45,7 @@ public class BaseUser extends BaseEntity<Long> implements Serializable {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "username" , unique= true)
+	@Column(name = "username", unique = true, nullable = false)
 	private String userName;
 
 	@Column(name = "email")

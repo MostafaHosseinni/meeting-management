@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +23,7 @@ import ir.mine.project.domain.WorkingHour;
 import ir.mine.project.domain.enumeration.WeekDays;
 import ir.mine.project.service.WorkingHourService;
 import ir.mine.project.service.dto.WorkingHourDTO;
+import ir.mine.project.web.rest.util.HeaderUtil;
 
 /**
  * REST controller for managing WorkingHour.

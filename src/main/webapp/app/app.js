@@ -69,6 +69,17 @@ app.config([ '$stateProvider', '$urlRouterProvider',
 				templateUrl : 'app/profile/profileList.html',
 				controller : 'profileListController'
 			});
+			$stateProvider.state('approvalsViewController', {
+				url : '/approvalsView',
+				templateUrl : 'app/approvalsview/approvalsView.html',
+				controller : 'approvalsViewController'
+			});
+			$stateProvider.state('approvalsDetailController', {
+				url : '/approvalsDetail/:id',
+				templateUrl : 'app/approvalsdetail/approvalsDetail.html',
+				controller : 'approvalsDetailController'
+			});
+
 
 			$urlRouterProvider.otherwise('/');
 		} ]);

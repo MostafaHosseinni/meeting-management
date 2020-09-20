@@ -55,7 +55,7 @@ public class Approvals extends BaseEntity<Long> {
 
 	private Integer endTime;
 
-	@OneToOne
+	@OneToOne(optional = false)
 	private Meeting meeting;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

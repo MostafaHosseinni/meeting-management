@@ -39,4 +39,6 @@ public class ServiceTypeResource
 	public ResponseEntity<List<ServiceTypeDTO>> getAllNotPageable() {
 		return findAllValid();
 	}
+
+	
 }
