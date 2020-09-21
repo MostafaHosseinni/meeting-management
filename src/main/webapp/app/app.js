@@ -8,7 +8,7 @@ app.config([ '$stateProvider', '$urlRouterProvider',
 			$stateProvider.state('homeController', {
 				url : '/',
 				templateUrl : 'app/meetingcalendar/meetingCalendarList.html',
-				controller : 'meetingCalendarListController'	
+				controller : 'meetingCalendarListController'
 			});
 
 			$stateProvider.state('approvalsController', {
@@ -46,19 +46,19 @@ app.config([ '$stateProvider', '$urlRouterProvider',
 				templateUrl : 'app/smsconfig/smsConfigList.html',
 				controller : 'smsConfigListController'
 			});
-			
+
 			$stateProvider.state('workingHourController', {
 				url : '/workingHourList',
 				templateUrl : 'app/workinghour/workingHourList.html',
 				controller : 'workingHourListController'
 			});
-			
+
 			$stateProvider.state('meetingCalendarListController', {
 				url : '/meetingCalendarList/:id',
 				templateUrl : 'app/meetingcalendar/meetingCalendarList.html',
 				controller : 'meetingCalendarListController'
 			});
-			
+
 			$stateProvider.state('changePasswordController', {
 				url : '/changePassword',
 				templateUrl : 'app/changepassword/changePassword.html',
@@ -80,9 +80,21 @@ app.config([ '$stateProvider', '$urlRouterProvider',
 				controller : 'approvalsDetailController'
 			});
 
-
 			$urlRouterProvider.otherwise('/');
 		} ]);
+
+app.directive('checkCharacter', function() {
+	return function(scope, element, attrs) {
+		element.bind("keydown keypress", function(event) {
+			var patt1 = new RegExp("[\u0600-\u06FF]");
+			if (patt1.test(event.key) == true) {
+				event.preventDefault();
+			}
+
+		});
+	};
+});
+
 app.directive('ngEnter', function() {
 	return function(scope, element, attrs) {
 		element.bind("keydown keypress", function(event) {
