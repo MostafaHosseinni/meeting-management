@@ -27,7 +27,8 @@ public interface MeetingRepository extends BaseRepository<Meeting, Long> {
 			MeetingStatus status);
 
 	List<Meeting> findAllByInvitees_idInAndMeetingDateBetweenAndStartTimeBetweenAndEndTimeBetween(List<Long> inviteesId,
-			ZonedDateTime meetingDateFrom, ZonedDateTime meetingDateTo, Integer startTime1, Integer endTime1, Integer startTime2, Integer endTime2);
+			ZonedDateTime meetingDateFrom, ZonedDateTime meetingDateTo, Integer startTime1, Integer endTime1,
+			Integer startTime2, Integer endTime2);
 
 	@Query("select min(m.startTime) from Meeting m")
 	Integer getMinStartTimeAndMeetingStatusNot(MeetingStatus status);
@@ -40,5 +41,7 @@ public interface MeetingRepository extends BaseRepository<Meeting, Long> {
 
 	@Query("select max(m.endTime) from Meeting m join m.invitees inv where inv.id in (?1)")
 	Integer getMaxEndTimeForCurrentUserAndMeetingStatusNot(List<Long> id, MeetingStatus status);
+
+
 
 }

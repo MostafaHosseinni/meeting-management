@@ -33,7 +33,7 @@
 						<div class="form-group">
 
 							<textbox size="6" label="Labels.Meeting.title" model="modelData.title" require="false"
-								disable="modelData.id != null">
+								disable="modelData.id != null" >
 							</textbox>
 
 							<datebox size="6" label="Labels.Meeting.meetingDate" model="modelData.meetingDate"
@@ -70,7 +70,7 @@
 							<div class="row">
 								<div class="col-md-12" ng-show="modelData.id == null">
 									<buttontextbox size="12" label="Labels.Meeting.newAgenda" model="newAgenda"
-										operations="operations"></buttontextbox>
+										operations="operations" maxlength="60" type="text"></buttontextbox>
 								</div>
 							</div>
 

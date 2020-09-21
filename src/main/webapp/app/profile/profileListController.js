@@ -32,6 +32,9 @@ app.controller("profileListController", function($scope, Labels, UiUtil,
 
 	}
 
+	$scope.test = function (){
+	alert('hello');
+	}
 	$scope.load = function() {
 		$scope.preload();
 	}
@@ -47,11 +50,16 @@ app.controller("profileListController", function($scope, Labels, UiUtil,
 	}
 
 	$scope.saveOrUpdate = function() {
-
-		if (!$scope.validate()) {
+		if (!$scope.modelForm.$valid) {
 			alertWarning(Labels.Warning.fillForm);
 			return;
+
+		} else if (!$scope.modelForm1.$valid) {
+			alertWarning(Labels.Warning.characterNotSuccess);
+			return;
+
 		}
+
 
 		if ($scope.modelData.password != $scope.modelData.confirmPassword) {
 			alertError(Labels.Error.notEqualPassword);

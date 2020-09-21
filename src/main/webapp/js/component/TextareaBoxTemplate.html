@@ -2,10 +2,11 @@
 	<div class="form-group">
 		<label class=""><i ng-if="required" class="fa fa-asterisk"
 			style="color: darkred !important; font-size: 12px !important;"></i> <span
-			ng-bind="label"></span></label>
+			ng-bind="label"></span><span ng-bind="checkLength()" class="maxlength"></span></label>
 		<textarea style="resize: vertical !important;"
 			class="form-control text-mine" ng-model="ngModel"
 			ng-required="required" ng-disabled="ngDisabled" ui-mask="{{mask}}"
-			model-view-value="true" rows="{{row}}"></textarea>
+			model-view-value="true" rows="{{row}}" maxlength="{{maxlength}}"
+			minlength="{{minlength}}"></textarea>
 	</div>
 </div>

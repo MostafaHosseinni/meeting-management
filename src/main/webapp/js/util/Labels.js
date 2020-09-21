@@ -98,7 +98,8 @@ app
 					meetingIsBooked: "جلسه در این زمان رزرو شده است",
 					dayIsHoliday: "این روز تعطیل می باشد",
 					meetingIsEmpty: "جلسه ای ذخیره نشده است",
-					dataRedantant: "داده تکراری قابل قبول نیست"
+					dataRedantant: "داده تکراری قابل قبول نیست",
+					characterNotSuccess : "رمز عبور شما باید بیشتر از هشت کاراکتر باشد"
 
 				},
 				Error: {

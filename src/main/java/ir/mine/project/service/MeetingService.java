@@ -22,5 +22,6 @@ public interface MeetingService extends BaseService<Meeting, Long> {
 	String preChecking(Meeting meeting);
 
 	Meeting rejectMeeting(Long id, MeetingStatus status);
+	
 
 }

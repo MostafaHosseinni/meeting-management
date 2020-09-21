@@ -4,8 +4,9 @@
 			<h3 style="margin-top: 2rem;" class="box-title" ng-bind="titlePage"></h3>
 		</div>
 		<div class="col-md-6">
-			<mybutton label="Labels.Buttons.New" click="addItem()" toggle="modal" target="#ProfileView"
-				icon="fa fa-plus" class="btn btn-primary pull-right"></mybutton>
+			<mybutton label="Labels.Buttons.New" click="addItem()" toggle="modal"
+				target="#ProfileView" icon="fa fa-plus"
+				class="btn btn-primary pull-right"></mybutton>
 		</div>
 		<div class="col-md-12">
 			<div class='row'>
@@ -21,60 +22,67 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">—</span>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">×</span>
 				</button>
-				<h3 class="modal-title" ng-bind="Labels.Generals.addProfile" ng-if = "modelData.id == null"></h3>
-				<h3 class="modal-title" ng-bind="Labels.Generals.detailProfile" ng-if = "modelData.id != null"></h3>
+				<h3 class="modal-title" ng-bind="Labels.Generals.addProfile"
+					ng-if="modelData.id == null"></h3>
+				<h3 class="modal-title" ng-bind="Labels.Generals.detailProfile"
+					ng-if="modelData.id != null"></h3>
 			</div>
 			<div class="modal-body" style="border: 1px;">
-				<form role="form" name="modelForm">
-					<div class="row">
-						<div class="form-group">
+
+				<div class="row">
+					<div class="form-group">
+						<form name="modelForm">
 							<textbox size="6" label="Labels.Profile.firstName" require="true"
 								model="modelData.firstName"></textbox>
 
-							<textbox size="6" label="Labels.Profile.lastName" require="true" model="modelData.lastName">
-							</textbox>
+							<textbox size="6" label="Labels.Profile.lastName" require="true"
+								model="modelData.lastName"> </textbox>
 
-							<textbox size="6" label="Labels.Profile.userName" require="true" model="modelData.userName">
-							</textbox>
+							<textbox size="6" label="Labels.Profile.userName" require="true"
+								model="modelData.userName" ng-enter = "test()"> </textbox>
 
-							<textbox size="6" label="Labels.Profile.post" require="true" model="modelData.post">
-							</textbox>
-
-
-							<textbox size="6" label="Labels.Profile.mobileNumber" require="true" mask="99999999999"
-								model="modelData.mobileNumber"></textbox>
-
-							<textbox size="6" type="password" label="Labels.Profile.password" require="true"
-								model="modelData.password"></textbox>
-
-							<textbox size="6" type="password" label="Labels.Profile.confirmPassword" require="true"
-								model="modelData.confirmPassword"></textbox>
+							<textbox size="6" label="Labels.Profile.post" require="true"
+								model="modelData.post"> </textbox>
 
 
-							<combobox size="6" label="Labels.Profile.profileType" require="true"
-								model="modelData.profileType" combomodel="profileTypeModel"></combobox>
+							<textbox size="6" label="Labels.Profile.mobileNumber"
+								require="true" mask="99999999999" model="modelData.mobileNumber"></textbox>
+								
+								<combobox size="6" label="Labels.Profile.profileType"
+								require="true" model="modelData.profileType"
+								combomodel="profileTypeModel"></combobox>
+						</form>
+						<form name="modelForm1">
+							<textbox size="6" type="password" label="Labels.Profile.password"
+								require="true" model="modelData.password" maxlength="40"
+								minlength="8" checkcharacter></textbox>
 
+							<textbox size="6" type="password"
+								label="Labels.Profile.confirmPassword" require="true"
+								model="modelData.confirmPassword" maxlength="40" minlength="8" checkcharacter></textbox>
 
-							<textbox size="6" label="Labels.Profile.email" require="false" model="modelData.email" type="email">
-							</textbox>
+						</form>
+						
+						<textbox size="6" label="Labels.Profile.email" require="false"
+							model="modelData.email" type="email"> </textbox>
 
-							<textbox  size="6" label="Labels.Profile.phoneNumber" require="false" mask="99999999"
-								model="modelData.phoneNumber"></textbox>
+						<textbox size="6" label="Labels.Profile.phoneNumber"
+							require="false" mask="99999999" model="modelData.phoneNumber"></textbox>
 
-
-
-						</div>
 					</div>
-				</form>
+				</div>
+
 			</div>
 			<div class="modal-footer">
 				<hr>
-				<button type="button" class="btn btn-default pull-left" data-dismiss="modal"
-					ng-bind="Labels.Buttons.cancel"></button>
-				<mybutton label="Labels.Buttons.save" click="saveOrUpdate()" icon="fa fa-save"></mybutton>
+				<button type="button" class="btn btn-default pull-left"
+					data-dismiss="modal" ng-bind="Labels.Buttons.cancel"></button>
+				<mybutton label="Labels.Buttons.save" click="saveOrUpdate()"
+					icon="fa fa-save"></mybutton>
 			</div>
 		</div>
 	</div>
