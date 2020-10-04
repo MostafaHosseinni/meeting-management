@@ -31,5 +31,20 @@ public interface BaseService<T, PK extends Serializable> {
 	T findOneNotSecure(PK id);
 
 	void deleteNotSecure(PK id);
+	
+	List<T> searchByExample(T t);
+
+	List<T> searchByObjectExample(Object o);
+
+	Long countByExample(T t);
+
+	Long countByObjectExample(Object o);
+
+	<Breif> Page<Breif> searchByExampleWithProjection(T t, Class<Breif> clazz, Pageable pageable);
+
+	<Breif> Page<Breif> searchByObjectExampleWithProjection(Object o, Class<Breif> clazz, Pageable pageable);
+
+	<Breif> Page<Breif> findAllWithProjection(Class<Breif> clazz, Pageable pageable);
+
 
 }

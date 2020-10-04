@@ -19,7 +19,7 @@ public enum ProfileType implements IHasDisplayName {
 		case ADMIN:
 			return "مدیر سیستم";
 		case SECRATERY:
-			return "دبیر";
+			return "تنظیم کننده جلسه";
 		case INVITEES:
 			return "مدعو";
 		default:

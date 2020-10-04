@@ -16,6 +16,8 @@ app.controller("approvalsViewController", function($scope, Labels, UiUtil, $loca
 				UiUtil.getDefaultColumn(Labels.Meeting.meetingDate,
 						"meeting.meetingDate"),
 				UiUtil.getDefaultColumn(Labels.Meeting.boss, "boss.userName")];
+		
+		$scope.tableModel.dataService = "getAllApprovalsForCurrentUser";
 
 		$scope.tableModel.operations[0].action = function(element , entityName) {
 			$location.path('approvalsDetail/' + element.id);

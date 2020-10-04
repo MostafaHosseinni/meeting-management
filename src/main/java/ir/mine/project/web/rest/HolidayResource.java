@@ -17,13 +17,14 @@ import ir.mine.project.domain.Holiday;
 import ir.mine.project.service.HolidayService;
 import ir.mine.project.service.dto.HolidayDTO;
 import ir.mine.project.service.dto.HolidayReceivedDTO;
+import ir.mine.project.service.dto.projectionsdto.TestBriefDTO;
 
 /**
  * REST controller for managing Holiday.
  */
 @RestController
 @RequestMapping("/Holiday")
-public class HolidayResource extends BaseRestFulServiceSecure<Holiday, HolidayDTO, Long, HolidayService> {
+public class HolidayResource extends BaseRestFulServiceSecure<Holiday, HolidayDTO, Long, HolidayService , TestBriefDTO> {
 
 	private static final String ENTITY_NAME = "holiday";
 

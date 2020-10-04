@@ -50,6 +50,7 @@ app
                                     UiUtil.getDefaultComboLocalData("10", 10),
                                     UiUtil.getDefaultComboLocalData("20", 20),
                                     UiUtil.getDefaultComboLocalData("50", 50)]);
+                        $scope.tableModel.ranges.showNoVal = false;
 
                         $scope.tableModel.ranges.change = function(size) {
                           if ($scope.tableModel.count != undefined
@@ -114,57 +115,77 @@ app
                           }
 
                         };
-
+                        
                         $scope.tableModel.callDataService = function() {
+                        	if(!$scope.tableModel.hasFilter){
                           CrudUtil
                                   .getByServicePage(
                                           $scope.tableModel.entityName,
                                           $scope.tableModel.dataService,
                                          $scope.tableModel.paginationObject)
                                   .then(
-                                          function(reponseData) {
-                                        	  
-                                        	  var data = reponseData.totalItems;
-                                            if (data == undefined) {
-                                              $scope.tableModel.count = 0;
-                                              $scope.tableModel.paginationObject.lastPage = $scope.tableModel.count
-                                                      / $scope.tableModel.paginationObject.size;
-                                              $scope.tableModel.paginationObject.lastPage = Math
-                                                      .ceil($scope.tableModel.paginationObject.lastPage);
-                                              $scope.tableModel.paginationObject.page = 0;
-                                              $scope.tableModel.selectedPage = $scope.tableModel.paginationObject.page;
-                                              $scope.tableModel.elements = [];
-
-                                            } else if (data == 0) {
-                                              $scope.tableModel.count = data;
-                                              $scope.tableModel.paginationObject.lastPage = $scope.tableModel.count
-                                                      / $scope.tableModel.paginationObject.size;
-                                              $scope.tableModel.paginationObject.lastPage = Math
-                                                      .ceil($scope.tableModel.paginationObject.lastPage);
-                                              $scope.tableModel.paginationObject.page = 0;
-                                              $scope.tableModel.selectedPage = $scope.tableModel.paginationObject.page;
-                                              $scope.tableModel.elements = [];
-
-                                              alertWarning(
-                                                      "نتیجه ای برای جستجو یافت نشد",
-                                                      3000);
-
-                                            }
-
-                                            else {
-                                              $scope.tableModel.count = data;
-
-                                              $scope.tableModel.paginationObject.lastPage = $scope.tableModel.count
-                                                      / $scope.tableModel.paginationObject.size;
-                                              $scope.tableModel.paginationObject.lastPage = Math
-                                                      .ceil($scope.tableModel.paginationObject.lastPage);
-// $scope.tableModel.paginationObject.page = 0;
-                                              $scope.tableModel.selectedPage = $scope.tableModel.paginationObject.page + 1;
-                                              
-                                              $scope.tableModel.elements = reponseData.elements;                                           
-                                              }
-
+                                          function(responseData) {
+                                        	  $scope.postProcessResponseData(responseData);
                                           });
+                        	}else{
+                          
+                          CrudUtil
+                          .postSearchByPage(
+                                  $scope.tableModel.entityName,
+                                  $scope.tableModel.example,
+                                 $scope.tableModel.paginationObject,
+                                 $scope.tableModel.dataService)
+                          .then(
+                                  function(responseData) {
+                                	  $scope.postProcessResponseData(responseData);
+                                  });
+                        	}
+
+                        }
+                        
+                        $scope.postProcessResponseData = function (reponseData){
+                        	  var data = reponseData.totalItems;
+                              if (data == undefined) {
+                                $scope.tableModel.count = 0;
+                                $scope.tableModel.paginationObject.lastPage = $scope.tableModel.count
+                                        / $scope.tableModel.paginationObject.size;
+                                $scope.tableModel.paginationObject.lastPage = Math
+                                        .ceil($scope.tableModel.paginationObject.lastPage);
+                                $scope.tableModel.paginationObject.page = 0;
+                                $scope.tableModel.selectedPage = $scope.tableModel.paginationObject.page;
+                                $scope.tableModel.elements = [];
+
+                              } else if (data == 0) {
+                                $scope.tableModel.count = data;
+                                $scope.tableModel.paginationObject.lastPage = $scope.tableModel.count
+                                        / $scope.tableModel.paginationObject.size;
+                                $scope.tableModel.paginationObject.lastPage = Math
+                                        .ceil($scope.tableModel.paginationObject.lastPage);
+                                $scope.tableModel.paginationObject.page = 0;
+                                $scope.tableModel.selectedPage = $scope.tableModel.paginationObject.page;
+                                $scope.tableModel.elements = [];
+
+                                alertWarning(
+                                        Labels.Warning.dataNotFound,
+                                        3000);
+
+                              }
+
+                              else {
+                                $scope.tableModel.count = data;
+
+                                $scope.tableModel.paginationObject.lastPage = $scope.tableModel.count
+                                        / $scope.tableModel.paginationObject.size;
+                                $scope.tableModel.paginationObject.lastPage = Math
+                                        .ceil($scope.tableModel.paginationObject.lastPage);
+// $scope.tableModel.paginationObject.page = 0;
+                                $scope.tableModel.selectedPage = $scope.tableModel.paginationObject.page + 1;
+                                
+                                $scope.tableModel.elements = reponseData.elements;                                           
+                                }
+
+
+                    
 
                         }
 
@@ -194,10 +215,11 @@ app
                           }
                         }
                         $scope.tableModel.selectPage = function(page) {
-                          if (page < $scope.tableModel.paginationObject.lastPage) {
+                          if (page < $scope.tableModel.paginationObject.lastPage && page >= 0) {
                             $scope.tableModel.paginationObject.page = page;
                             $scope.tableModel.selectedPage = $scope.tableModel.paginationObject.page + 1;
                             $scope.tableModel.callDataService();
+                        	  
                           }
                         }
 

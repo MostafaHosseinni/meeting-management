@@ -51,9 +51,9 @@ public class Approvals extends BaseEntity<Long> {
 
 	private ZonedDateTime createDate;
 
-	private Integer startTime;
+	private String startTime;
 
-	private Integer endTime;
+	private String endTime;
 
 	@OneToOne(optional = false)
 	private Meeting meeting;

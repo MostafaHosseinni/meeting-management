@@ -1,47 +1,54 @@
 <div class="box box-form">
 	<div class="box-header">
 		<div class="col-md-12">
-			<h3 style="margin-top: 2rem;" class="box-title" ng-bind="Labels.Menu.detailMeeting"></h3>
+			<h3 style="margin-top: 2rem;" class="box-title"
+				ng-bind="Labels.Menu.detailMeeting"></h3>
 		</div>
 
 		<div class="col-md-12">
 
 			<hr>
 
-			<textbox size="3" label="Labels.Meeting.title" model="modelData.meeting.title" disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.title"
+				model="modelData.meeting.title" disable="true"></textbox>
 
-			<datebox size="3" label="Labels.Meeting.meetingDate" model="modelData.meeting.meetingDate" disable="true">
-			</datebox>
+			<datebox size="3" label="Labels.Meeting.meetingDate"
+				model="modelData.meeting.meetingDate" disable="true"> </datebox>
 
-			<textbox size="3" label="Labels.Meeting.startTime" type="number" model="modelData.meeting.startTime"
-				disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.startTime" type="number"
+				model="modelData.meeting.startTime" disable="true"></textbox>
 
-			<textbox size="3" label="Labels.Meeting.endTime" type="number" model="modelData.meeting.endTime"
-				disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.endTime" type="number"
+				model="modelData.meeting.endTime" disable="true"></textbox>
 
-			<combobox size="3" label="Labels.Meeting.meetingType" model="modelData.meeting.meetingType"
-				combomodel="meetingTypeModel" disable="true"></combobox>
+			<combobox size="3" label="Labels.Meeting.meetingType"
+				model="modelData.meeting.meetingType" combomodel="meetingTypeModel"
+				disable="true"></combobox>
 
-			<combobox size="3" label="Labels.Meeting.meetingPosition" model="modelData.meeting.meetingPosition"
+			<combobox size="3" label="Labels.Meeting.meetingPosition"
+				model="modelData.meeting.meetingPosition"
 				combomodel="meetingPositionModel" disable="true"></combobox>
 
-			<textbox size="3" label="Labels.Meeting.meetingService" model="modelData.meeting.meetingService"
-				disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.meetingService"
+				model="modelData.meeting.meetingService" disable="true"></textbox>
 
-			<angucomplete size="3" label="Labels.Meeting.meetingRoom" selectedobject="modelData.meeting.meetingRoom"
+			<angucomplete size="3" label="Labels.Meeting.meetingRoom"
+				selectedobject="modelData.meeting.meetingRoom"
 				autocomobject="meetingRoomModel" disable="true"></angucomplete>
 
-			<angucomplete size="6" label="Labels.Meeting.Secretary" selectedobject="modelData.meeting.secretary"
+			<angucomplete size="6" label="Labels.Meeting.Secretary"
+				selectedobject="modelData.meeting.secretary"
 				autocomobject="secretaryModel" disable="true"> </angucomplete>
 
-			<angucomplete size="6" label="Labels.Meeting.boss" selectedobject="modelData.meeting.boss"
-				autocomobject="bossModel" disable="true"> </angucomplete>
+			<angucomplete size="6" label="Labels.Meeting.boss"
+				selectedobject="modelData.meeting.boss" autocomobject="bossModel"
+				disable="true"> </angucomplete>
 
 			<div class="col-md-12" ng-if="modelData.meeting.agenda.length>0">
 				<label ng-class=""><span ng-bind="Labels.Meeting.agenda"></span></label>
 				<div class="box box-form">
 					<ul class="nav nav-stacked">
-						<li ng-repeat="a in modelData.meeting.agenda">{{a}}</li>
+						<li ng-repeat="a in modelData.meeting.agenda"><a>{{a}}</a></li>
 					</ul>
 				</div>
 			</div>
@@ -55,21 +62,23 @@
 	<div class="box-header">
 
 		<div class="col-md-12">
-			<h3 class="box-title" ng-bind="titlePage"></h3>
+			<h3 class="box-title" ng-bind="Labels.Approvals.main"></h3>
 		</div>
 		<div class="col-md-12">
 			<hr>
 			<div class="col-md-12">
-				<exchange ng-if="presentModel" suggestModel="presentModel" model="modelData.absents"></exchange>
+				<exchange ng-if="presentModel" suggestModel="presentModel"
+					model="modelData.absents"></exchange>
 			</div>
 			<div class="col-md-12">
 				<hr>
 			</div>
 			<form role="form" name="tempForm">
-				<combobox ng-if="agendaModel" size="3" label="Labels.Meeting.agenda" model="temp.ruls"
-					combomodel="agendaModel" require="true"></combobox>
+				<combobox ng-if="agendaModel" size="3" label="Labels.Meeting.agenda"
+					model="temp.ruls" combomodel="agendaModel" require="true"></combobox>
 
-				<textbox size="8" label="Labels.Approvals.approval" model="temp.approvals" require="true"></textbox>
+				<textbox size="8" label="Labels.Approvals.approval"
+					model="temp.approvals" require="true"></textbox>
 
 			</form>
 			<div class="col-md-1" style="margin-top: 2rem;">
@@ -78,42 +87,46 @@
 
 
 			<div class="col-md-12" ng-if="tableModel">
-				<clienttable tablemodel="tableModel" elements="modelData.approvalRul"></clienttable>
+				<clienttable tablemodel="tableModel"
+					elements="modelData.approvalRul"></clienttable>
 			</div>
 
-			<div class="col-md-12">
-				<hr>
-			</div>
 			<form role="form" name="templateForm">
-			<textbox size="11" label="Labels.Approvals.newOutOfApproval" model="template.newOutOfApproval" require="true">
-			</textbox>
+				<textbox size="11" label="Labels.Approvals.newOutOfApproval"
+					model="template.newOutOfApproval" require="true"> </textbox>
 			</form>
 			<div class="col-md-1" style="margin-top: 2rem;">
 				<mybutton click="addOutOfApproval()" icon="fa fa-plus"></mybutton>
 			</div>
 
 			<div class="col-md-12" ng-if="modelData.outOfApproval.length>0">
-				<label ng-class=""><span ng-bind="Labels.Approvals.outOfApproval"></span></label>
+				<label ng-class=""><span
+					ng-bind="Labels.Approvals.outOfApproval"></span></label>
 				<div class="box box-form">
 					<ul class="nav nav-stacked">
-						<li ng-repeat="a in modelData.outOfApproval"><a>{{a}} <mybutton ng-if="modelData.id == null"
-									class="pull-right bg-red" click="removeItem(a)" icon="fa fa-minus"></mybutton>
-							</a></li>
+						<li ng-repeat="a in modelData.outOfApproval"><a>{{a}} <mybutton
+									ng-if="modelData.id == null" class="pull-right bg-red"
+									click="removeItem(a)" icon="fa fa-minus"></mybutton>
+						</a></li>
 					</ul>
 				</div>
 			</div>
 
 
+			<timebox size="3" label="Labels.Approvals.startTime"
+				model="modelData.startTime" require="true"></timebox>
 
-			<textbox label="Labels.Approvals.startTime" type="number" model="modelData.startTime"> </textbox>
+			<timebox size="3" label="Labels.Approvals.endTime"
+				model="modelData.endTime" require="true"></timebox>
 
-			<textbox label="Labels.Approvals.endTime" type="number" model="modelData.endTime"> </textbox>
+
 
 			<hr>
 			<div class="col-md-12">
 				<hr>
 
-				<mybutton class="btn btn-primary pull-right" label="Labels.Buttons.save" click="saveOrUpdate()"
+				<mybutton class="btn btn-primary pull-right"
+					label="Labels.Buttons.save" click="saveOrUpdate()"
 					icon="fa fa-save"> </mybutton>
 			</div>
 

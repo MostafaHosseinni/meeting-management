@@ -71,7 +71,7 @@ public class CalenderUtil {
 
 		firstDayOfWeek.setHours(0);
 		firstDayOfWeek.setMinutes(0);
-		firstDayOfWeek.setSeconds(1);
+		firstDayOfWeek.setSeconds(0);
 
 		return firstDayOfWeek;
 	}

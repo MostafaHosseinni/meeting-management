@@ -7,6 +7,7 @@ import ir.mine.project.base.rest.BaseRestFulServiceSecure;
 import ir.mine.project.domain.SmsConfig;
 import ir.mine.project.service.SmsConfigService;
 import ir.mine.project.service.dto.SmsConfigDTO;
+import ir.mine.project.service.dto.projectionsdto.TestBriefDTO;
 
 /**
  * REST controller for managing SmsConfig.
@@ -14,7 +15,7 @@ import ir.mine.project.service.dto.SmsConfigDTO;
 @RestController
 @RequestMapping("/SmsConfig")
 public class SmsConfigResource
-		extends BaseRestFulServiceSecure<SmsConfig, SmsConfigDTO, Long, SmsConfigService> {
+		extends BaseRestFulServiceSecure<SmsConfig, SmsConfigDTO, Long, SmsConfigService,TestBriefDTO> {
 
 	private static final String ENTITY_NAME = "smsconfig";
 

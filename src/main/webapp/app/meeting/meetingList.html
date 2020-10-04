@@ -1,30 +1,68 @@
 <div class="box box-form">
 	<div class="box-header">
-		<div class="col-md-6">
-			<h3 style="margin-top: 2rem;" class="box-title" ng-bind="titlePage"></h3>
-		</div>
-		<div class="col-md-6">
-			<mybutton label="Labels.Buttons.New" click="addItem()" toggle="modal" target="#MeetingView"
-				icon="fa fa-plus" class="btn btn-primary pull-right"></mybutton>
-		</div>
 		<div class="col-md-12">
+			<h3 style="margin-top: 2rem;" class="box-title"
+				ng-bind="Labels.Menu.searchMeeting"></h3>
+		</div>
+
+
+		<div class="col-md-12">
+			<div class="row">
+				<hr>
+				<textbox size="4" label="Labels.Meeting.title"
+					model="tableModel.tempExample.title" require="false"> </textbox>
+
+
+				<datebox size="4" label="Labels.Meeting.meetingDateFrom"
+					model="tableModel.tempExample.meetingDateFrom"></datebox>
+
+				<datebox size="4" label="Labels.Meeting.meetingDateTo"
+					model="tableModel.tempExample.meetingDateTo"></datebox>
+
+				<combobox size="4" label="Labels.Meeting.meetingType"
+					model="tableModel.tempExample.meetingType"
+					combomodel="meetingTypeModel"></combobox>
+
+				<combobox size="4" label="Labels.Meeting.meetingPosition"
+					model="tableModel.tempExample.meetingPosition"
+					combomodel="meetingPositionModel"></combobox>
+
+				<angucomplete size="4" label="Labels.Meeting.meetingRoom"
+					selectedobject="tableModel.tempExample.meetingRoom"
+					autocomobject="meetingRoomModel"></angucomplete>
+
+
+				<div class="col-md-4"></div>
+				<div class="col-md-2">
+					<mybutton label="Labels.Buttons.search" click="search()"
+						icon="fa fa-search" clasz="btn btn-primary btn-block float-right"></mybutton>
+				</div>
+
+				<div class="col-md-2">
+					<mybutton label="Labels.Buttons.clear" click="clearForm()"
+						icon="fa fa-trash" clasz="btn btn-danger btn-block  float-right"></mybutton>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+
 			<div class='row'>
 				<hr>
 				<datatable tablemodel="tableModel"></datatable>
 			</div>
-		</div>
 
+		</div>
 	</div>
 </div>
-
+</div>
 <div id="MeetingView" class="modal fade in" id="modal-default">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
-				<h3 class="modal-title" ng-bind="Labels.Generals.detailView"></h3>
+				<h3 class="modal-title" ng-bind="Labels.Generals.detailMeeting"></h3>
 				<hr>
 			</div>
 			<div class="modal-body" style="border: 1px;">
@@ -32,45 +70,59 @@
 					<div class="row">
 						<div class="form-group">
 
-							<textbox size="6" label="Labels.Meeting.title" model="modelData.title" require="false">
+							<textbox size="6" label="Labels.Meeting.title"
+								model="modelData.title" disable="true"> </textbox>
+
+							<datebox size="6" label="Labels.Meeting.meetingDate"
+								model="modelData.meetingDate" disable="true"></datebox>
+
+							<textbox size="6" label="Labels.Meeting.startTime" type="number"
+								model="modelData.startTime" disable="true"></textbox>
+
+							<textbox size="6" label="Labels.Meeting.endTime" type="number"
+								model="modelData.endTime" disable="true"></textbox>
+
+
+							<textbox size="6" label="Labels.Meeting.meetingType"
+								model="modelData.meetingType" disable="true"></textbox>
+
+							<textbox size="6" label="Labels.Meeting.meetingPosition"
+								model="modelData.meetingPosition" disable="true"></textbox>
+
+							<textbox size="6" label="Labels.Meeting.meetingService"
+								model="modelData.meetingService" disable="true"></textbox>
+
+							<textbox size="6" label="Labels.Meeting.meetingRoom"
+								model="modelData.meetingRoom.roomName" disable="true"></textbox>
+
+							<textbox size="6" label="Labels.Meeting.Secretary"
+								model="modelData.secretary.userName"
+								ng-if="modelData.meetingType != 'قرار'" disable="true">
 							</textbox>
 
-							<datebox size="6" label="Labels.Meeting.meetingDate" model="modelData.meetingDate"
-								require="false"></datebox>
+							<textbox size="6" label="Labels.Meeting.boss"
+								model="modelData.boss.userName"
+								ng-if="modelData.meetingType != 'قرار'" disable="true">
+							</textbox>
 
-							<textbox size="6" label="Labels.Meeting.startTime" type="number" model="modelData.startTime"
-								require="false"></textbox>
-
-							<textbox size="6" label="Labels.Meeting.endTime" type="number" model="modelData.endTime"
-								require="false"></textbox>
-
-							<combobox size="6" label="Labels.Meeting.meetingStatus" model="modelData.meetingStatus"
-								combomodel="meetingStatusModel"></combobox>
-
-							<combobox size="6" label="Labels.Meeting.meetingType" model="modelData.meetingType"
-								combomodel="meetingTypeModel"></combobox>
-
-							<combobox size="6" label="Labels.Meeting.meetingPosition" model="modelData.meetingPosition"
-								combomodel="meetingPositionModel"></combobox>
-
-							<textbox size="6" label="Labels.Meeting.meetingService" model="modelData.meetingService"
-								require="false"></textbox>
-
-							<angucomplete size="6" label="Labels.Meeting.meetingRoom"
-								selectedobject="modelData.meetingRoom" autocomobject="meetingRoomModel"></angucomplete>
-
-							<multiselect size="6" label="Labels.Meeting.invitees" require="true"
-								model="modelData.invitees" multimodel="inviteesModel"></multiselect>
+							<div class="col-md-12" ng-if="modelData.agenda.length>0">
+								<label ng-class=""><span ng-bind="Labels.Meeting.agenda"></span></label>
+								<div class="box box-form">
+									<ul class="nav nav-stacked">
+										<li ng-repeat="a in modelData.agenda"><a>{{a}}</a></li>
+									</ul>
+								</div>
+							</div>
+							
+							<multiselect size="6" label="Labels.Meeting.invitees" model="modelData.invitees"
+								multimodel="inviteesModel" disable="modelData.id != null"></multiselect>
 
 						</div>
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<hr>
-				<button type="button" class="btn btn-default pull-left" data-dismiss="modal"
-					ng-bind="Labels.Buttons.cancel"></button>
-				<mybutton label="Labels.Buttons.save" click="saveOrUpdate()" icon="fa fa-save"></mybutton>
+				
 			</div>
 		</div>
 	</div>

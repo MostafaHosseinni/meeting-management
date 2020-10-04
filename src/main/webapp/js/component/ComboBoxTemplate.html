@@ -6,7 +6,7 @@
 			ng-disabled="ngDisabled" ng-model="ngModel" ng-change="changeValue()"
 			class="form-control"
 			ng-options="{{ngOptions}}">
-			<option value="" data-ng-selected="comboModel.value == null">---</option>
+			<option ng-if="comboModel.showNoVal" value="" data-ng-selected="comboModel.value == null">---</option>
 		</select>
 	</div>
 </div>

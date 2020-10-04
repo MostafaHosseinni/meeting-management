@@ -1,7 +1,7 @@
 <div class="box box-form">
 	<div class="box-header">
 		<div class="col-md-6">
-			<h3 style="margin-top: 2rem;" class="box-title" ng-bind="titlePage"></h3>
+			<h3 style="margin-top: 2rem;" class="box-title" ng-bind="Labels.Menu.meetingCalendar"></h3>
 		</div>
 		<div class="col-md-6">
 			<mybutton ng-if="CurrentUser.canDo('meeting:create')" label="Labels.Buttons.New" click="addItem()"
@@ -32,17 +32,17 @@
 					<div class="row">
 						<div class="form-group">
 
-							<textbox size="6" label="Labels.Meeting.title" model="modelData.title" require="false"
+							<textbox size="6" label="Labels.Meeting.title" model="modelData.title" require="true"
 								disable="modelData.id != null" >
 							</textbox>
 
 							<datebox size="6" label="Labels.Meeting.meetingDate" model="modelData.meetingDate"
 								require="true" disable="modelData.id != null"></datebox>
 
-							<textbox size="6" label="Labels.Meeting.startTime" type="number" model="modelData.startTime"
+							<textbox size="6" label="Labels.Meeting.startTime" pattern="\d" maxlength="2" model="modelData.startTime"
 								require="true" disable="modelData.id != null"></textbox>
 
-							<textbox size="6" label="Labels.Meeting.endTime" type="number" model="modelData.endTime"
+							<textbox size="6" label="Labels.Meeting.endTime" pattern="\d" maxlength="2" model="modelData.endTime"
 								require="true" disable="modelData.id != null"></textbox>
 
 
@@ -105,15 +105,16 @@
 			</div>
 			<div class="modal-footer">
 				<hr>
-				<button type="button" ng-if="modelData.id==null" class="btn btn-default pull-left" data-dismiss="modal"
+				<button type="button" ng-if="modelData.id==null"
+					class="btn btn-default pull-left" data-dismiss="modal"
 					ng-bind="Labels.Buttons.cancel"></button>
 				<mybutton label="Labels.Buttons.save" ng-if="modelData.id==null" click="preCheck()" icon="fa fa-save">
 				</mybutton>
 				<a ng-if="CurrentUser.canDo('approvals:create') && modelData.id!=null && modelData.meetingType != 'قرار' && modelData.meetingStatus == 'جدید'"
 					href="#!/approvalsList/{{modelData.id}}" ng-click="afterLoad()" class="btn btn-primary pull-left"
-					ng-bind="Labels.Buttons.approvalConfirm "></a>
+					ng-bind="Labels.Buttons.approvalConfirm " ></a>
 				<mybutton ng-if="CurrentUser.canDo('meeting:update') && modelData.id!=null && modelData.meetingStatus == 'جدید'"
-					label="Labels.Buttons.rejected" click="reject()" icon=""></mybutton>
+					label="Labels.Buttons.rejected" click="reject()" icon="fa fa-window-close"></mybutton>
 
 
 			</div>

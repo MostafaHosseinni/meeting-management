@@ -24,5 +24,15 @@ public enum MeetingPosition implements IHasDisplayName {
 		}
 		return super.toString();
 	}
+	
+	public static MeetingPosition getValueOf(String string) {
+		MeetingPosition[] values = values();
+		for (MeetingPosition meetingPosition : values) {
+			if (string.equals(meetingPosition.toString()))
+				return meetingPosition;
+		}
+		return null;
+	}
+
 
 }

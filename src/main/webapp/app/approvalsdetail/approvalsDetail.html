@@ -1,49 +1,98 @@
 <div class="box box-form">
 	<div class="box-header">
 		<div class="col-md-12">
-			<h3 style="margin-top: 2rem;" class="box-title" ng-bind="Labels.Menu.detailMeeting"></h3>
+			<h3 style="margin-top: 2rem;" class="box-title"
+				ng-bind="Labels.Menu.detailMeeting"></h3>
 		</div>
 
 		<div class="col-md-12">
 
 			<hr>
 
-			<textbox size="3" label="Labels.Meeting.title" model="modelData.meeting.title" disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.title"
+				model="modelData.meeting.title" disable="true"></textbox>
 
-			<datebox size="3" label="Labels.Meeting.meetingDate" model="modelData.meeting.meetingDate" disable="true">
-			</datebox>
+			<datebox size="3" label="Labels.Meeting.meetingDate"
+				model="modelData.meeting.meetingDate" disable="true"> </datebox>
 
-			<textbox size="3" label="Labels.Meeting.startTime" type="number" model="modelData.meeting.startTime"
-				disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.startTime" type="number"
+				model="modelData.meeting.startTime" disable="true"></textbox>
 
-			<textbox size="3" label="Labels.Meeting.endTime" type="number" model="modelData.meeting.endTime"
-				disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.endTime" type="number"
+				model="modelData.meeting.endTime" disable="true"></textbox>
 
-			<textbox size="3" label="Labels.Meeting.meetingType" model="modelData.meeting.meetingType.name"  disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.meetingType"
+				model="modelData.meeting.meetingType" disable="true"></textbox>
 
-			<textbox size="3" label="Labels.Meeting.meetingPosition" model="modelData.meeting.meetingPosition.name"  disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.meetingPosition"
+				model="modelData.meeting.meetingPosition" disable="true"></textbox>
 
-			<textbox size="3" label="Labels.Meeting.meetingService" model="modelData.meeting.meetingService"
-				disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.meetingService"
+				model="modelData.meeting.meetingService" disable="true"></textbox>
 
-			<textbox size="3" label="Labels.Meeting.meetingRoom" model="modelData.meeting.meetingRoom.roomName"  disable="true"></textbox>
+			<textbox size="3" label="Labels.Meeting.meetingRoom"
+				model="modelData.meeting.meetingRoom.roomName" disable="true"></textbox>
 
-			<textbox size="6" label="Labels.Meeting.Secretary" model="modelData.meeting.secretary.userName"  disable="true"> </textbox>
+			<textbox size="6" label="Labels.Meeting.Secretary"
+				model="modelData.meeting.secretary.userName" disable="true">
+			</textbox>
 
-			<textbox size="6" label="Labels.Meeting.boss" model="modelData.meeting.boss.userName"  disable="true"> </textbox>
+			<textbox size="6" label="Labels.Meeting.boss"
+				model="modelData.meeting.boss.userName" disable="true"> </textbox>
 
 			<div class="col-md-12" ng-if="modelData.meeting.agenda.length>0">
 				<label ng-class=""><span ng-bind="Labels.Meeting.agenda"></span></label>
 				<div class="box box-form">
 					<ul class="nav nav-stacked">
-						<li ng-repeat="a in modelData.meeting.agenda">{{a}}</li>
+						<li ng-repeat="a in modelData.meeting.agenda"><a>{{a}}</a></li>
 					</ul>
 				</div>
 			</div>
-			
-			
+
+
 
 		</div>
 	</div>
 </div>
 
+<div class="box box-form">
+	<div class="box-header">
+
+		<div class="col-md-12">
+			<h3 class="box-title" ng-bind="Labels.Menu.approvalsList"></h3>
+		</div>
+		<div class="col-md-12">
+			<hr>
+
+			<multiselect size="6" label="Labels.Approvals.presents"
+				model="modelData.presents" multimodel="inviteesModel" disable="true"></multiselect>
+			<multiselect size="6" label="Labels.Approvals.absents"
+				model="modelData.absents" multimodel="inviteesModel" disable="true"></multiselect>
+
+
+		</div>
+		<div class="col-md-12">
+			<clienttable tablemodel="tableModel" elements="modelData.approvalRul"></clienttable>
+
+
+
+
+			<div class="col-md-12" ng-if="modelData.outOfApproval.length>0">
+				<label ng-class=""><span
+					ng-bind="Labels.Approvals.outOfApproval"></span></label>
+				<div class="box box-form">
+					<ul class="nav nav-stacked">
+						<li ng-repeat="a in modelData.outOfApproval"><a>{{a}} </a></li>
+					</ul>
+				</div>
+			</div>
+
+			<timebox size="3" label="Labels.Approvals.startTime"
+				model="modelData.startTime" disable="true"></timebox>
+
+			<timebox size="3" label="Labels.Approvals.endTime"
+				model="modelData.endTime" disable="true"></timebox>
+
+
+		</div>
+	</div>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.aspectj.weaver.ast.Test;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,13 +21,14 @@ import ir.mine.project.domain.Profile;
 import ir.mine.project.service.ProfileService;
 import ir.mine.project.service.dto.PasswordDTO;
 import ir.mine.project.service.dto.ProfileDTO;
+import ir.mine.project.service.dto.projectionsdto.TestBriefDTO;
 
 /**
  * REST controller for managing Profile.
  */
 @RestController
 @RequestMapping("/Profile")
-public class ProfileResource extends BaseRestFulServiceSecure<Profile, ProfileDTO, Long, ProfileService> {
+public class ProfileResource extends BaseRestFulServiceSecure<Profile, ProfileDTO, Long, ProfileService,TestBriefDTO> {
 
 	private static final String ENTITY_NAME = "profile";
 

@@ -51,8 +51,8 @@
 
 							<textbox size="6" label="Labels.Profile.mobileNumber"
 								require="true" mask="99999999999" model="modelData.mobileNumber"></textbox>
-								
-								<combobox size="6" label="Labels.Profile.profileType"
+
+							<combobox size="6" label="Labels.Profile.profileType"
 								require="true" model="modelData.profileType"
 								combomodel="profileTypeModel"></combobox>
 						</form>
@@ -63,12 +63,13 @@
 
 							<textbox size="6" type="password"
 								label="Labels.Profile.confirmPassword" require="true"
-								model="modelData.confirmPassword" maxlength="40" minlength="8" check-character></textbox>
+								model="modelData.confirmPassword" maxlength="40" minlength="8"
+								check-character></textbox>
 
 						</form>
-						
+
 						<textbox size="6" label="Labels.Profile.email" require="false"
-							model="modelData.email" type="email"> </textbox>
+							model="modelData.email" type="email" check-character > </textbox>
 
 						<textbox size="6" label="Labels.Profile.phoneNumber"
 							require="false" mask="99999999" model="modelData.phoneNumber"></textbox>

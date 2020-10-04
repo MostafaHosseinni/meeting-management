@@ -1,5 +1,6 @@
 package ir.mine.project.base.dozer;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,21 @@ public class DozerConvertorGenericMethod<P, K> extends DozerConvertorGeneric<P, 
         }
         return retList;
     }
+    
+    public Object convertEnumFromString(String value, Class<?> enumClass) {
+
+		try {
+			Method method = enumClass.getMethod("values");
+			Object[] enumValues = (Object[]) method.invoke(null);
+			for (int i = 0; i < enumValues.length; i++) {
+				Object object = enumValues[i];
+				if (value.equals(object.toString()))
+					return object;
+			}
+		} catch (Exception e) {
+		}
+		return null;
+	}
 
 
 }

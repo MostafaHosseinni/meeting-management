@@ -54,6 +54,8 @@ public class Meeting extends BaseEntity<Long> {
 	@Column(nullable = false)
 	private ZonedDateTime meetingDate;
 
+	private String meetingDateStr;
+
 	@Column(nullable = false)
 	private Integer startTime;
 

@@ -23,5 +23,9 @@ public class WorkingHourDTO extends BaseDTO<Long> {
 	private Integer endTime;
 	
 	private String dayDate;
+	
+	private String startTimeStr;
+
+	private String endTimeStr;
 
 }

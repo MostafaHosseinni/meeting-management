@@ -56,7 +56,8 @@ app.controller("approvalsListController",
 
 			$scope.tableModel = UiUtil.getDefaultClientTableModel(
 				$scope, "Agenda");
-			$scope.tableModel.pageSize = 5;
+			$scope.tableModel.hasPaging = false;
+			$scope.tableModel.pageSize = 50;
 			$scope.tableModel.columns = [UiUtil.getDefaultColumn(
 					Labels.Agenda.ruls, "ruls"),
 				UiUtil.getDefaultColumn(Labels.Agenda.approvals, "approvals"),

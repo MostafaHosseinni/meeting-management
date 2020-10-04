@@ -8,16 +8,16 @@ app
 				Generals: {
 					detailView: "جزئیات",
 					addMeeing: "افزودن جلسه",
-					detailMeeting: "مشاهده جزئیات جلسه",
+					detailMeeting: "جزئیات جلسه",
 					addHoliday: "افزودن تعطیلات",
-					detailHoliday: "مشاهده جزئیات تعطیلات",
+					detailHoliday: "جزئیات تعطیلات",
 					addRoom: "افزودن مکان جلسه",
-					detailRoom: "مشاهده جزئیات مکان جلسه ",
+					detailRoom: "جزئیات مکان جلسه",
 					addService: "افزودن امکانات",
-					detailService: "مشاهده جزئیات امکانات",
-					detailWorkingHour: "مشاهده جزئیات ساعت کاری",
-					addProfile: "افزودن اطلاعات شخصی",
-					detailProfile: "مشاهده جزئیات اطلاعات شخصی",
+					detailService: "جزئیات امکانات",
+					detailWorkingHour: "جزئیات ساعت کاری",
+					addProfile: "مدیریت کاربران",
+					detailProfile: "جزئیات مدیریت کاربران",
 					list: "فهرست",
 					add: "ایجاد",
 					edit: "ویرایش",
@@ -39,7 +39,8 @@ app
 					home: "خانه",
 					logout: "خروج",
 					account: "حساب کاربری",
-					profile: "اطلاعات شخصی",
+					accountMe : "حساب من",
+					profile: "مدیریت کاربران",
 					profiles: "کاربران",
 					changePassword: "تغییر کلمه عبور",
 					approvals: "مصوبه",
@@ -53,7 +54,9 @@ app
 					baseTables: "جدول پایه",
 					meetingCalendar: "تقویم جلسات",
 					present: "حضور و غیاب",
-					detailMeeting: "مشخصات جلسه"
+					detailMeeting: "مشخصات جلسه",
+					searchMeeting : "جستجوی جلسات",
+					approvalsList : "فهرست مصوبات"
 
 				},
 
@@ -77,7 +80,7 @@ app
 					deleteImage: "حذف تصویر",
 					conformityCheck: "بررسی تطابق",
 					approvalConfirm: "ثبت مصوبه",
-					rejected: "رد ",
+					rejected: "بستن",
 					nextPage: "صفحه بعدی",
 					backPage: "صفحه قبلی"
 
@@ -93,13 +96,16 @@ app
 				Info: {},
 				Warning: {
 					fillForm: "لطفا فیلد های اجباری را پر نمایید",
-					dataNotFound: "نتیجه ای برای جستجو یافت نشد",
-					correctlyFild: "لطفا فیلد ها رو درست وارد کنید",
+					dataNotFound: "نتیجه ای برای نمایش یافت نشد",
+					correctlyFild: "ساعت شروع باید پیش از ساعت پایان تعریف شود",
 					meetingIsBooked: "جلسه در این زمان رزرو شده است",
 					dayIsHoliday: "این روز تعطیل می باشد",
 					meetingIsEmpty: "جلسه ای ذخیره نشده است",
 					dataRedantant: "داده تکراری قابل قبول نیست",
-					characterNotSuccess : "رمز عبور شما باید بیشتر از هشت کاراکتر باشد"
+					characterNotSuccess : "رمز عبور شما باید بیشتر از هشت کاراکتر باشد",
+					dataNotSuccess : "تاریخ صحیح وارد نشده است",
+					timeNotValid : "زمان وارد شده صحیح نیست"
+					
 
 				},
 				Error: {
@@ -130,7 +136,7 @@ app
 				},
 
 				Profile: {
-					main: "اطلاعات شخصی",
+					main: "کاربران",
 					firstName: "نام",
 					lastName: "نام خانوادگی",
 					userName: "نام کاربری",
@@ -148,7 +154,7 @@ app
 
 				ProfileType: {
 					admin: "مدیر سیستم",
-					secratery: "دبیر",
+					secratery: "تنظیم کننده جلسه",
 					invitees: "مدعو",
 				},
 				Agenda: {
@@ -186,7 +192,7 @@ app
 					endTime: "ساعت پایان",
 					meetingStatus: "وضعیت جلسه",
 					meetingType: "نوع جلسه",
-					meetingPosition: "شرایط جلسه",
+					meetingPosition: "میهمان/میزبان",
 					meetingService: "خدمات",
 					approvals: "مصوبه",
 					meetingRoom: "مکان جلسه",
@@ -197,7 +203,9 @@ app
 					agenda: "دستور جلسه",
 					newAgenda: "دستور جلسه جدید",
 					nextWeek: "هفته بعد",
-					backWeek: "هفته قبل"
+					backWeek: "هفته قبل",
+					meetingDateFrom : "تاریخ جلسه از",
+					meetingDateTo : "تا"
 				},
 				MeetingRoom: {
 					main: "مکان جلسه",

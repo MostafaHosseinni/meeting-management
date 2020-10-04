@@ -27,6 +27,8 @@ public class MeetingDTO extends BaseDTO<Long> {
 
 	private String meetingDate;
 
+	private String meetingDateStr;
+
 	private Integer startTime;
 
 	private Integer endTime;

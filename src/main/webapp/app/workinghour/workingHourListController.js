@@ -37,9 +37,9 @@ app.controller("workingHourListController",
 						UiUtil.getDefaultColumn(Labels.WorkingHour.workDay,
 								"workDay"),
 						UiUtil.getDefaultColumn(Labels.WorkingHour.startTime,
-								"startTime"),
+								"startTimeStr"),
 						UiUtil.getDefaultColumn(Labels.WorkingHour.endTime,
-								"endTime") ];
+								"endTimeStr") ];
 
 			}
 
@@ -54,22 +54,38 @@ app.controller("workingHourListController",
 			$scope.load();
 
 			$scope.validate = function() {
-				return $scope.modelForm.$valid;
+
+				if ($scope.modelForm.$error) {
+					if ($scope.modelForm.$error.required) {
+						alertWarning(Labels.Warning.fillForm);
+						return false;
+					} else if ($scope.modelForm.$error.pattern) {
+						alertWarning(Labels.Warning.timeNotValid);
+
+						return false;
+					}
+				}
+
+				return true;
 			}
 
 			$scope.saveOrUpdate = function() {
 				if (!$scope.validate()) {
-					alertWarning(Labels.Warning.fillForm);
 					return;
 				}
-				var txt1 = $scope.modelData.startTime;
-				var txt2 = $scope.modelData.endTime;
+				var startTimeTxt = $scope.modelData.startTimeStr.split(':');
+				var endTimeTxt = $scope.modelData.endTimeStr.split(':');
 
-				if (txt1 > txt2) {
+				start = parseInt(startTimeTxt[0])* 60 + parseInt(startTimeTxt[1]); 
+				end = parseInt(endTimeTxt[0])* 60 + parseInt(endTimeTxt[1]) ;
+				if (start > end || start == end) {
 
 					alertWarning(Labels.Warning.correctlyFild);
 
 				} else {
+					$scope.modelData.startTime = parseInt(startTimeTxt[0]);
+					$scope.modelData.endTime = parseInt(endTimeTxt[0]);
+					
 					$scope.callServiceAfterChecking();
 				}
 

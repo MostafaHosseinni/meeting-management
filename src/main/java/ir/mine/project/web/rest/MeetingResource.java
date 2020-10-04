@@ -2,6 +2,9 @@ package ir.mine.project.web.rest;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 
+import io.swagger.annotations.ApiParam;
 import ir.mine.project.base.rest.BaseRestFulServiceSecure;
 import ir.mine.project.domain.Meeting;
 import ir.mine.project.domain.enumeration.MeetingStatus;
@@ -21,13 +25,18 @@ import ir.mine.project.service.MeetingService;
 import ir.mine.project.service.dto.MeetingDTO;
 import ir.mine.project.service.dto.MeetingExceptionDTO;
 import ir.mine.project.service.dto.MeetingReceivedDTO;
+import ir.mine.project.service.dto.MeetingSearchDTO;
+import ir.mine.project.service.dto.projectionsdto.MeetingDigest;
+import ir.mine.project.service.dto.projectionsdto.MeetingDigestDTO;
+import ir.mine.project.service.dto.projectionsdto.TestBriefDTO;
+import ir.mine.project.web.rest.util.PaginationUtil;
 
 /**
  * REST controller for managing Meeting.
  */
 @RestController
 @RequestMapping("/Meeting")
-public class MeetingResource extends BaseRestFulServiceSecure<Meeting, MeetingDTO, Long, MeetingService> {
+public class MeetingResource extends BaseRestFulServiceSecure<Meeting, MeetingDTO, Long, MeetingService, TestBriefDTO> {
 
 	private static final String ENTITY_NAME = "meeting";
 
@@ -75,6 +84,15 @@ public class MeetingResource extends BaseRestFulServiceSecure<Meeting, MeetingDT
 	@Timed
 	public ResponseEntity<MeetingDTO> rejectMeeting(@PathVariable Long id) {
 		return ResponseEntity.ok(convertEntityToDTO(baseService.rejectMeeting(id, MeetingStatus.REJECT)));
+	}
+
+	@PostMapping("/searchMeeting")
+	@Timed
+	public ResponseEntity<List<MeetingDTO>> searchMeeting(@RequestBody MeetingSearchDTO dto,
+			@ApiParam Pageable pageable) {
+		Page<Meeting> page = baseService.searchMeeting(dto, pageable);
+		HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "*/searchMeeting");
+		return new ResponseEntity<>(convertListEntityToDTO(page.getContent()), headers, HttpStatus.OK);
 	}
 
 }

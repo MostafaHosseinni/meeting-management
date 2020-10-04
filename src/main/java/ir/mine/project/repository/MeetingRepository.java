@@ -42,6 +42,4 @@ public interface MeetingRepository extends BaseRepository<Meeting, Long> {
 	@Query("select max(m.endTime) from Meeting m join m.invitees inv where inv.id in (?1)")
 	Integer getMaxEndTimeForCurrentUserAndMeetingStatusNot(List<Long> id, MeetingStatus status);
 
-
-
 }

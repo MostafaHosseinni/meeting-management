@@ -31,13 +31,24 @@ app.controller("holidayListController", function($scope, Labels, UiUtil,
 	$scope.load();
 
 	$scope.validate = function() {
-		return $scope.modelForm.$valid;
+
+		if ($scope.modelForm.$error) {
+			if ($scope.modelForm.$error.required) {
+				alertWarning(Labels.Warning.fillForm);
+				return false;
+			} else if ($scope.modelForm.$error.pattern) {
+				alertWarning(Labels.Warning.dataNotSuccess);
+
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	$scope.saveOrUpdate = function() {
 
 		if (!$scope.validate()) {
-			alertWarning(Labels.Warning.fillForm);
 			return;
 		}
 

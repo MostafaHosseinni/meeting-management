@@ -37,6 +37,7 @@ app.controller("meetingRoomListController",
 
 			$scope.clientTableModel = UiUtil.getDefaultClientTableModel(
 				$scope, "RoomService");
+			$scope.clientTableModel.hasPaging = false;
 			$scope.clientTableModel.columns = [UiUtil.getDefaultColumn(
 					Labels.ServiceType.main, "serviceType.title"),
 				UiUtil.getDefaultColumn(Labels.ServiceType.serviceNumber, "serviceCount"),
@@ -96,14 +97,25 @@ app.controller("meetingRoomListController",
 
 		$scope.load();
 
-		$scope.validate = function () {
-			return $scope.modelForm.$valid;
+		$scope.validate = function() {
+
+			if ($scope.modelForm.$error) {
+				if ($scope.modelForm.$error.required) {
+					alertWarning(Labels.Warning.fillForm);
+					return false;
+				} else if ($scope.modelForm.$error.pattern) {
+					alertWarning(Labels.Warning.dataNotSuccess);
+
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 		$scope.saveOrUpdate = function () {
 
 			if (!$scope.validate()) {
-				alertWarning(Labels.Warning.fillForm);
 				return;
 			}
 

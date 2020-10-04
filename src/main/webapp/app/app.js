@@ -87,7 +87,7 @@ app.directive('checkCharacter', function() {
 	return function(scope, element, attrs) {
 		element.bind("keydown keypress", function(event) {
 			var patt1 = new RegExp("[\u0600-\u06FF]");
-			if (patt1.test(event.key) == true) {
+			if (patt1.test(event.key) == true || event.key == " ") {
 				event.preventDefault();
 			}
 

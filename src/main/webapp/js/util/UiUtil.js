@@ -31,6 +31,7 @@ app
 						comboModel.isLocal = true;
 						comboModel.localData = localData;
 						comboModel.displayName = "name";
+						comboModel.showNoVal = true;
 						comboModel.value = "value";
 						comboModel.change = function () {
 
@@ -50,6 +51,7 @@ app
 						comboModel.isLocal = false;
 						comboModel.service = undefined;
 						comboModel.displayName = displayName;
+						comboModel.showNoVal = true;
 						comboModel.localData = [];
 						comboModel.change = function () {
 
@@ -104,7 +106,7 @@ app
 
 						tableModel.selectedObject = [];
 
-						tableModel.hasFilter = true;
+						tableModel.hasFilter = false;
 
 						tableModel.hasCheckBox = false;
 						tableModel.checkBoxType = undefined;
@@ -134,10 +136,12 @@ app
 
 						tableModel.entityName = entityName;
 
+						tableModel.hasPaging = true;
+						
 						tableModel.nextPageLabel = '';
 						tableModel.previousPageLabel = '';
 
-						tableModel.pageSize = 10;
+						tableModel.pageSize = 50;
 						tableModel.pageNumber = 0;
 
 						tableModel.valueRenderer = function (element, column) {

@@ -25,9 +25,9 @@ public class ApprovalsDTO extends BaseDTO<Long> {
 
 	private String createDate;
 
-	private Integer startTime;
+	private String startTime;
 
-	private Integer endTime;
+	private String endTime;
 
 	private MeetingDTO meeting;
 

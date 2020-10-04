@@ -40,4 +40,8 @@ public class WorkingHour extends BaseEntity<Long> {
 	@Range(min = 1, max = 23)
 	private Integer endTime;
 
+	private String startTimeStr;
+
+	private String endTimeStr;
+
 }

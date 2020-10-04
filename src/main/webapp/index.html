@@ -91,6 +91,7 @@
 <script src="js/component/FooterLink.js"></script>
 <script src="js/component/Exchange.js"></script>
 <script src="js/component/TextBoxButton.js"></script>
+<script src="js/component/TimeBox.js"></script>
 
 
 
@@ -138,9 +139,8 @@
 		<header class="top-menu-header">
 			<!-- Logo -->
 			<a href="index.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-<!-- 				<span class="logo-mini"><img -->
-<!-- 					src="" class="img-circle" -->
-<!-- 					alt="Logo Mini" /></span> logo for regular state and mobile devices -->
+				<!-- 				<span class="logo-mini"><img --> <!-- 					src="" class="img-circle" -->
+				<!-- 					alt="Logo Mini" /></span> logo for regular state and mobile devices -->
 				<span class="logo-lg"><b ng-bind="Labels.app"></b></span>
 			</a>
 			<!-- Header Navbar -->
@@ -150,7 +150,7 @@
 					role="button"> <span class="sr-only">منو کشویی</span>
 				</a>
 				<!-- Navbar Right Menu -->
-				
+
 			</nav>
 		</header>
 
@@ -171,8 +171,9 @@
 							class="fa fa-home"></i> <span ng-bind="Labels.Menu.home"></span></a></li> -->
 
 					<li ng-if="user.profileType == 'مدیر سیستم'" class="treeview"><a><i
-							class="fa  fa fa-list-alt	"></i> <span ng-bind="Labels.Menu.baseTables"></span>
-							<span class="pull-right-container"> <i
+							class="fa  fa fa-list-alt	"></i> <span
+							ng-bind="Labels.Menu.baseTables"></span> <span
+							class="pull-right-container"> <i
 								class="fa fa-angle-right pull-right"></i>
 						</span> </a>
 						<ul class="treeview-menu">
@@ -189,8 +190,8 @@
 									ng-bind="Labels.Menu.workinghour"> </span>
 							</a></li>
 							<li class="treeview"><a href="#!/holidayList"> <i
-									class="fa fa fa-calendar-check-o "> </i> <span ng-bind="Labels.Menu.holidaie">
-								</span>
+									class="fa fa fa-calendar-check-o "> </i> <span
+									ng-bind="Labels.Menu.holidaie"> </span>
 							</a></li>
 						</ul></li>
 
@@ -219,10 +220,10 @@
 					</a></li>
 
 
-<!-- 					<li class="treeview"><a href="#!/meetingList"> <i -->
-<!-- 							class="fa fa-group"> </i> <span ng-bind="Labels.Menu.meeting"> -->
-<!-- 						</span> -->
-<!-- 					</a></li> -->
+					<li class="treeview"><a href="#!/meetingList"> <i
+							class="fa fa-search"> </i> <span
+							ng-bind="Labels.Menu.searchMeeting"> </span>
+					</a></li>
 
 					<li class="treeview"><a href="#!/meetingCalendarList"> <i
 							class="fa fa-calendar"> </i> <span
@@ -232,13 +233,17 @@
 
 
 					<li class="treeview"><a><i class="fa fa-id-card"></i> <span
-							ng-bind="Labels.Menu.account"></span> <span
+							ng-bind="Labels.Menu.account"
+							ng-if="user.profileType == 'مدیر سیستم'"></span> <span
+							ng-bind="Labels.Menu.accountMe"
+							ng-if="user.profileType == Labels.ProfileType.invitees || (user.profileType == Labels.ProfileType.secratery) "></span><span
 							class="pull-right-container"> <i
 								class="fa fa-angle-right pull-right"></i>
 						</span> </a>
 						<ul class="treeview-menu">
-							<li ng-if="user.profileType == 'مدیر سیستم'" class="treeview"><a href="#!/profileList"><i
-									class="fa fa-user"></i> <span ng-bind="Labels.Menu.profile"></span></a></li>
+							<li ng-if="user.profileType == 'مدیر سیستم'" class="treeview"><a
+								href="#!/profileList"><i class="fa fa-user"></i> <span
+									ng-bind="Labels.Menu.profile"></span></a></li>
 							<li class="treeview"><a href="#!/changePassword"><i
 									class="fa fa-lock"></i> <span
 									ng-bind="Labels.Menu.changePassword"></span></a></li>
@@ -264,9 +269,10 @@
 		<!-- Main Footer -->
 		<footer class="main-footer">
 			<!-- Default to the left -->
-			<strong>کپی رایت &copy; 2020 <a href="http://spborna.org">مجموعه
-					ایرانیان پرداز جم</a> .
-			</strong> کلیه حقوق محفوظ است
+			<strong><center> کلیه حقوق این اثر برای گروه <a href="#">ایرانیان
+				پرداز جم </a>محفوظ است
+			</center> 
+			</strong>
 			<!-- To the right -->
 			<div class="pull-right hidden-xs"></div>
 		</footer>

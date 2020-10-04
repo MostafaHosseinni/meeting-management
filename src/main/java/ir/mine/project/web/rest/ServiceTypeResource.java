@@ -13,6 +13,7 @@ import ir.mine.project.base.rest.BaseRestFulServiceSecure;
 import ir.mine.project.domain.ServiceType;
 import ir.mine.project.service.ServiceTypeService;
 import ir.mine.project.service.dto.ServiceTypeDTO;
+import ir.mine.project.service.dto.projectionsdto.TestBriefDTO;
 
 /**
  * REST controller for managing ServiceType.
@@ -20,7 +21,7 @@ import ir.mine.project.service.dto.ServiceTypeDTO;
 @RestController
 @RequestMapping("/ServiceType")
 public class ServiceTypeResource
-		extends BaseRestFulServiceSecure<ServiceType, ServiceTypeDTO, Long, ServiceTypeService> {
+		extends BaseRestFulServiceSecure<ServiceType, ServiceTypeDTO, Long, ServiceTypeService,TestBriefDTO> {
 
 	private static final String ENTITY_NAME = "servicetype";
 

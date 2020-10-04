@@ -7,6 +7,7 @@ import ir.mine.project.base.rest.BaseRestFulServiceSecure;
 import ir.mine.project.domain.RoomService;
 import ir.mine.project.service.RoomServiceService;
 import ir.mine.project.service.dto.RoomServiceDTO;
+import ir.mine.project.service.dto.projectionsdto.TestBriefDTO;
 
 /**
  * REST controller for managing RoomService.
@@ -14,7 +15,7 @@ import ir.mine.project.service.dto.RoomServiceDTO;
 @RestController
 @RequestMapping("/RoomService")
 public class RoomServiceResource
-		extends BaseRestFulServiceSecure<RoomService, RoomServiceDTO, Long, RoomServiceService> {
+		extends BaseRestFulServiceSecure<RoomService, RoomServiceDTO, Long, RoomServiceService,TestBriefDTO> {
 
 	private static final String ENTITY_NAME = "roomservice";
 

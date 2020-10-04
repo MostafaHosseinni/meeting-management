@@ -13,6 +13,7 @@ import ir.mine.project.base.rest.BaseRestFulServiceSecure;
 import ir.mine.project.domain.MeetingRoom;
 import ir.mine.project.service.MeetingRoomService;
 import ir.mine.project.service.dto.MeetingRoomDTO;
+import ir.mine.project.service.dto.projectionsdto.TestBriefDTO;
 
 /**
  * REST controller for managing MeetingRoom.
@@ -20,7 +21,7 @@ import ir.mine.project.service.dto.MeetingRoomDTO;
 @RestController
 @RequestMapping("/MeetingRoom")
 public class MeetingRoomResource
-		extends BaseRestFulServiceSecure<MeetingRoom, MeetingRoomDTO, Long, MeetingRoomService> {
+		extends BaseRestFulServiceSecure<MeetingRoom, MeetingRoomDTO, Long, MeetingRoomService,TestBriefDTO> {
 
 	private static final String ENTITY_NAME = "meetingroom";
 

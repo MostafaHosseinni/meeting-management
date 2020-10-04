@@ -3,6 +3,8 @@ package ir.mine.project.service.impl;
 import java.time.ZonedDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,7 +12,9 @@ import ir.mine.project.base.authorization.autoupdate.annot.SecurityModel;
 import ir.mine.project.base.authorization.autoupdate.annot.SecurityOperation;
 import ir.mine.project.base.service.BaseServiceImpl;
 import ir.mine.project.domain.Approvals;
+import ir.mine.project.domain.Profile;
 import ir.mine.project.domain.enumeration.MeetingStatus;
+import ir.mine.project.domain.enumeration.ProfileType;
 import ir.mine.project.repository.ApprovalsRepository;
 import ir.mine.project.service.ApprovalsService;
 import ir.mine.project.service.MeetingService;
@@ -49,6 +53,15 @@ public class ApprovalsServiceImpl extends BaseServiceImpl<Approvals, Long, Appro
 		}
 		
 		return super.save(t);
+	}
+
+	@Override
+	public Page<Approvals> findAllApprovalsForCurrentUser(Pageable pageable) {
+		Profile currentProfile = profileService.getCurrentProfile();
+ 		if (currentProfile.getProfileType().equals(ProfileType.INVITEES)) {
+			return baseRepository.findAllByMeeting_Invitees_id(currentProfile.getId() , pageable);
+		}
+		return baseRepository.findAll(pageable);
 	}
 
 }

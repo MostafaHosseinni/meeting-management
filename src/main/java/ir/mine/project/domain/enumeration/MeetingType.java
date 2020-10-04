@@ -6,12 +6,13 @@ import ir.mine.project.base.dto.IHasDisplayName;
  * The Template enumeration.
  */
 public enum MeetingType implements IHasDisplayName {
-	MEETING,APPOINMENT;
+	MEETING, APPOINMENT;
 
 	@Override
 	public String displayName() {
 		return toString();
 	}
+
 	@Override
 	public String toString() {
 		switch (this) {
@@ -23,6 +24,15 @@ public enum MeetingType implements IHasDisplayName {
 			break;
 		}
 		return super.toString();
+	}
+
+	public static MeetingType getValueOf(String string) {
+		MeetingType[] values = values();
+		for (MeetingType meetingType : values) {
+			if (string.equals(meetingType.toString()))
+				return meetingType;
+		}
+		return null;
 	}
 
 }

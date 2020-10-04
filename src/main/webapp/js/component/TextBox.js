@@ -11,7 +11,7 @@ app.directive('textbox', [ function() {
 		"tab" : "@tab",
 		"type" : "@type",
 		"maxlength" : "@maxlength",
-		"minlength" : "@minlength"
+		"minlength" : "@minlength",
 	};
 
 	directive.templateUrl = "/js/component/TextBoxTemplate.html";

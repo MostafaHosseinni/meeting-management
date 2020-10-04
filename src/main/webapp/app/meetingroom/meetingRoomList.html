@@ -36,13 +36,13 @@
 								require="true"></textbox>
 
 							<textbox size="6" label="Labels.MeetingRoom.capacity" model="modelData.capacity"
-								type="number" require="true"></textbox>
+								pattern="\d" maxlength="3" require="true" ></textbox>
 
 							<datebox size="6" label="Labels.MeetingRoom.expireDate" model="modelData.expireDate"
 								require="true"></datebox>
 
 							<textareabox size="12" label="Labels.MeetingRoom.address" model="modelData.address"
-								require="true">
+							maxlength="250"	require="true">
 							</textareabox>
 
 						</form>
@@ -50,7 +50,7 @@
 
 							<combobox size="6" label="Labels.ServiceType.main" model="temp.serviceType"
 								combomodel="ServiceTypeModel" require="true"></combobox>
-							<textbox size="4" label="Labels.ServiceType.serviceNumber" type="number"
+							<textbox size="4" label="Labels.ServiceType.serviceNumber" pattern="\d" maxlength="3"
 								model="temp.serviceCount" require="true">
 							</textbox>
 						</form>

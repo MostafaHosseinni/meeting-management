@@ -134,20 +134,22 @@ function convertError(errResponse){
 		else{
 			return "خطا در درج اطلاعات، یک خطای ناشناخته در درج اطلاعات داخل پایگاه داده رخ داد";
 		}
-	}else if(errResponse.exceptionType == 'db'){
-		return "خطای دسترسی شما اجازه انجام این عملیات را ندارید";
+	}else if(errResponse.exceptionType == 'ac'){
+		return "خطای دسترسی ، شما اجازه انجام این عملیات را ندارید";
 	}else if(errResponse.exceptionType == 'un'){
 		return "خطای ناشناخته سمت سرور رخ داد";
+	}else if(errResponse.exceptionType == 'Validation failed'){
+		return "زمان را در بازه ی زمانی 00 تا 24 تعریف کنید";
 	}
 
 	if(errResponse.statusText == "" || !errResponse.statusText){
-			if(errResponse.status ==200) errResponse.statusText = 'OK'
-		    if(errResponse.status ==201) errResponse.statusText = 'Created'
-		    if(errResponse.status ==202) errResponse.statusText = 'Accepted'
+			if(errResponse.status ==200) errResponse.statusText = 'موفقیت آمیز'
+		    if(errResponse.status ==201) errResponse.statusText = 'ایجاد شد'
+		    if(errResponse.status ==202) errResponse.statusText = 'پذیرفته شد'
 		    if(errResponse.status ==203) errResponse.statusText = 'Non-Authoritative Information'
-		    if(errResponse.status ==204) errResponse.statusText = 'No Content'
-		    if(errResponse.status ==205) errResponse.statusText = 'Reset Content'
-		    if(errResponse.status ==206) errResponse.statusText = 'Partial Content'
+		    if(errResponse.status ==204) errResponse.statusText = 'بدون محتوا'
+		    if(errResponse.status ==205) errResponse.statusText = 'باز راه اندازی محتوا'
+		    if(errResponse.status ==206) errResponse.statusText = 'محتوای ناقص'
 		    if(errResponse.status ==300) errResponse.statusText = 'Multiple Choices'
 		    if(errResponse.status ==301) errResponse.statusText = 'Moved Permanently'
 		    if(errResponse.status ==302) errResponse.statusText = 'Found'
@@ -159,8 +161,8 @@ function convertError(errResponse){
 		    if(errResponse.status ==400) errResponse.statusText = 'Bad Request'
 		    if(errResponse.status ==401) errResponse.statusText = 'Unauthorized'
 		    if(errResponse.status ==402) errResponse.statusText = 'Payment Required'
-		    if(errResponse.status ==403) errResponse.statusText = 'Forbidden'
-		    if(errResponse.status ==404) errResponse.statusText = 'Not Found'
+		    if(errResponse.status ==403) errResponse.statusText = 'عدم دسترسی'
+		    if(errResponse.status ==404) errResponse.statusText = 'یافت نشد'
 		    if(errResponse.status ==405) errResponse.statusText = 'Method Not Allowed'
 		    if(errResponse.status ==406) errResponse.statusText = 'Not Acceptable'
 		    if(errResponse.status ==407) errResponse.statusText = 'Proxy Authentication Required'
@@ -175,7 +177,7 @@ function convertError(errResponse){
 		    if(errResponse.status ==416) errResponse.statusText = 'Requested Range Not Satisfiable'
 		    if(errResponse.status ==417) errResponse.statusText = 'Expectation Failed'
 		    if(errResponse.status ==418) errResponse.statusText = 'I\'m a teapot'
-		    if(errResponse.status ==500) errResponse.statusText = 'Internal Server Error'
+		    if(errResponse.status ==500) errResponse.statusText = 'خطای ناشناخته سمت سرور رخ داد'
 		    if(errResponse.status ==501) errResponse.statusText = 'Not Implemented'
 		    if(errResponse.status ==502) errResponse.statusText = 'Bad Gateway'
 		    if(errResponse.status ==503) errResponse.statusText = 'Service Unavailable'

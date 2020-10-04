@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +22,9 @@ import ir.mine.project.domain.Meeting;
 import ir.mine.project.domain.Profile;
 import ir.mine.project.domain.WorkingHour;
 import ir.mine.project.domain.enumeration.MeetingExceptionReason;
+import ir.mine.project.domain.enumeration.MeetingPosition;
 import ir.mine.project.domain.enumeration.MeetingStatus;
+import ir.mine.project.domain.enumeration.MeetingType;
 import ir.mine.project.domain.enumeration.ProfileType;
 import ir.mine.project.domain.enumeration.WeekDays;
 import ir.mine.project.repository.MeetingRepository;
@@ -28,6 +33,10 @@ import ir.mine.project.service.MeetingRoomService;
 import ir.mine.project.service.MeetingService;
 import ir.mine.project.service.ProfileService;
 import ir.mine.project.service.WorkingHourService;
+import ir.mine.project.service.dto.MeetingSearchDTO;
+import ir.mine.project.service.dto.extra.BaseSpecification;
+import ir.mine.project.service.dto.extra.CriteriaOperation;
+import ir.mine.project.service.dto.extra.SearchCriteria;
 
 /**
  * Service Implementation for managing BatteryLog.
@@ -67,6 +76,7 @@ public class MeetingServiceImpl extends BaseServiceImpl<Meeting, Long, MeetingRe
 		ZonedDateTime meetingDate = t.getMeetingDate();
 		meetingDate = meetingDate.plusHours(t.getStartTime());
 		t.setMeetingDate(meetingDate);
+		t.setMeetingDateStr(CalenderUtil.dateToJalaliCalendar(t.getMeetingDate()));
 		return super.save(t);
 	}
 
@@ -100,7 +110,7 @@ public class MeetingServiceImpl extends BaseServiceImpl<Meeting, Long, MeetingRe
 		WorkingHour workingHour = workingHourService.findFirstWorkingHour(weekDay);
 		if (workingHour.getEndTime() == null && workingHour.getStartTime() == null) {
 			return false;
-		} else if (workingHour.getStartTime() > t.getEndTime() || workingHour.getEndTime() < t.getStartTime()) {
+		} else if (workingHour.getStartTime() >= t.getEndTime() || workingHour.getEndTime() <= t.getStartTime()) {
 			return false;
 		}
 		return true;
@@ -118,7 +128,7 @@ public class MeetingServiceImpl extends BaseServiceImpl<Meeting, Long, MeetingRe
 
 			for (Meeting meeting : meetings) {
 				if ((meeting.getStartTime() <= t.getStartTime() && meeting.getEndTime() >= t.getStartTime())
-						|| (meeting.getStartTime() >= t.getEndTime() && meeting.getEndTime() <= t.getEndTime())) {
+						|| (meeting.getStartTime() > t.getEndTime() && meeting.getEndTime() <= t.getEndTime())) {
 					return false;
 				}
 
@@ -213,6 +223,42 @@ public class MeetingServiceImpl extends BaseServiceImpl<Meeting, Long, MeetingRe
 		meeting.setMeetingStatus(status);
 		meeting.setLastModifiedDate(ZonedDateTime.now());
 		return super.save(meeting);
+	}
+
+	@Override
+	public Page<Meeting> searchMeeting(MeetingSearchDTO dto, Pageable pageable) {
+
+		BaseSpecification<Meeting, Long> specification = new BaseSpecification<>(
+				new SearchCriteria("id", CriteriaOperation.NOT_NULL, null));
+
+		Specification<Meeting> where = Specification.where(specification);
+
+		if (dto.getTitle() != null) {
+			where = where
+					.and(new BaseSpecification<>(new SearchCriteria("title", CriteriaOperation.LIKE, dto.getTitle())));
+		}
+		if (dto.getMeetingDateFrom() != null) {
+			where = where.and(new BaseSpecification<>(
+					new SearchCriteria("meetingDateStr", CriteriaOperation.GRATE_THAN, dto.getMeetingDateFrom())));
+		}
+		if (dto.getMeetingDateTo() != null) {
+			where = where.and(new BaseSpecification<>(
+					new SearchCriteria("meetingDateStr", CriteriaOperation.LESS_THAN, dto.getMeetingDateTo())));
+		}
+		if (dto.getMeetingType() != null) {
+			where = where.and(new BaseSpecification<>(new SearchCriteria("meetingType", CriteriaOperation.EQUAL,
+					MeetingType.getValueOf(dto.getMeetingType()))));
+		}
+		if (dto.getMeetingPosition() != null) {
+			where = where.and(new BaseSpecification<>(new SearchCriteria("meetingPosition", CriteriaOperation.EQUAL,
+					MeetingPosition.getValueOf(dto.getMeetingPosition()))));
+		}
+		if (dto.getMeetingRoom() != null && dto.getMeetingRoom().getId() != null) {
+			where = where.and(new BaseSpecification<>(
+					new SearchCriteria("meetingRoom.id", CriteriaOperation.EQUAL, dto.getMeetingRoom().getId())));
+		}
+
+		return baseRepository.findAll(where, pageable);
 	}
 
 }
