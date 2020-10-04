@@ -35,10 +35,11 @@ public class HolidayServiceImpl extends BaseServiceImpl<Holiday, Long, HolidayRe
 
 	@Override
 	public List<Holiday> findAllHolidayInWeek(Integer dayDiff) {
-		
+
 		Date date = CalenderUtil.getDifferentDate(new Date(), dayDiff * 7);
 
 		ZonedDateTime startDate = CalenderUtil.getFirstDayWeek(date).toInstant().atZone(ZoneId.systemDefault());
+		startDate = startDate.withNano(0);
 
 		ZonedDateTime endDate = CalenderUtil.getLastDayWeek(date).toInstant().atZone(ZoneId.systemDefault());
 

@@ -44,7 +44,7 @@ public class Meeting extends BaseEntity<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false , columnDefinition = "NVARCHAR(255)")
 	private String title;
 
 	private ZonedDateTime createDate;
