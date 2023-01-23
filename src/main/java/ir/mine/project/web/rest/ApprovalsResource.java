@@ -28,7 +28,6 @@ import ir.mine.project.web.rest.util.PaginationUtil;
 @RequestMapping("/Approvals")
 public class ApprovalsResource extends BaseRestFulServiceSecure<Approvals, ApprovalsDTO, Long, ApprovalsService , TestBriefDTO> {
 	private static final String ENTITY_NAME = "approvals";
-
 	public ApprovalsResource(ApprovalsService approvalsService) {
 		super(approvalsService);
 		setENTITY_NAME(ENTITY_NAME);
